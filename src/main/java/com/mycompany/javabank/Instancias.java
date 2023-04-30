@@ -24,8 +24,9 @@ public class Instancias {
         if (cli.Sacar(conta1, 100.03)){
             System.out.println(conta1.getSaldo());
         } else {
-            System.out.println("Saque negado (acima do saldo)");
+            System.out.println("Saque negado.");
         }
-
+        cli.Depositar(conta1, 5.4);
+        System.out.println(conta1.getSaldo());
     }
 }

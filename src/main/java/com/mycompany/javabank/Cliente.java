@@ -66,10 +66,17 @@ public class Cliente {
     // TODO: GerarExtrato
 
     public boolean Sacar(Conta conta, double valor){
+        // TODO: Como é o limite de saque?
         double novoVal = conta.getSaldo() - valor;
         if (novoVal < 0) return false;
 
         conta.setSaldo(conta.getSaldo() - valor);
+        return true;
+    }
+
+    public boolean Depositar(Conta conta, double valor){
+        double novoVal = conta.getSaldo() + valor;
+        conta.setSaldo(novoVal);
         return true;
     }
 }
