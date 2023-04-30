@@ -62,4 +62,14 @@ public class Cliente {
     public int getSenhaTransac(){
         return this.senhaTransac;
     }
+
+    // TODO: GerarExtrato
+
+    public boolean Sacar(Conta conta, double valor){
+        double novoVal = conta.getSaldo() - valor;
+        if (novoVal < 0) return false;
+
+        conta.setSaldo(conta.getSaldo() - valor);
+        return true;
+    }
 }
