@@ -12,54 +12,54 @@ public class Conta {
     public int ID;
     public int clienteID;
     public String tipo;
-    private double saldo;
-    private double limiteSaque;
-    
-    Conta(int ID, int clienteID, String tipo, double saldo, double limiteSaque){
-        this.setID(ID);
-        this.setClienteID(clienteID);
-        this.setSaldo(saldo);
-        this.setTipo(tipo);
-        this.setLimiteSaque(limiteSaque);
-    }
-    
-    public void setID(int id){
-        this.ID = id;
-    }
-    
-    public int getID(){
-        return this.ID;
-    }
-    
-    public void setClienteID(int clienteID){
+    public double saldo;
+    public double limiteSaque;
+
+    public Conta(int ID, int clienteID, String tipo, double saldo, double limiteSaque) {
+        this.ID = ID;
         this.clienteID = clienteID;
-    }
-    
-    public int getClienteID(){
-        return this.clienteID;
-    }
-    
-    public void setTipo(String tipo){
         this.tipo = tipo;
-    }
-    
-    public String getTipo(){
-        return this.tipo;
-    }
-    
-    public void setSaldo(double saldo){
         this.saldo = saldo;
-    }
-    
-    public double getSaldo(){
-        return this.saldo;
-    }
-    
-    public void setLimiteSaque(double limiteSaque){
         this.limiteSaque = limiteSaque;
     }
-    
-    public double getLimiteSaque(){
-        return this.limiteSaque;
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getClienteID() {
+        return clienteID;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public double getLimiteSaque() {
+        return limiteSaque;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setClienteID(int clienteID) {
+        this.clienteID = clienteID;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public void setLimiteSaque(double limiteSaque) {
+        this.limiteSaque = limiteSaque;
     }
 }
