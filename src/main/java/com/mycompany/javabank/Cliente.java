@@ -74,9 +74,8 @@ public class Cliente {
         return true;
     }
 
-    public boolean Depositar(Conta conta, double valor){
+    public void Depositar(Conta conta, double valor){
         double novoVal = conta.getSaldo() + valor;
         conta.setSaldo(novoVal);
-        return true;
     }
 }
