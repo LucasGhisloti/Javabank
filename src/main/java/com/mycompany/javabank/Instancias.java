@@ -19,12 +19,14 @@ public class Instancias {
         Conta conta1 = new Conta(1, 1, "conta corrente", 30000.00, 2000.00);
         Transacao trans = new Transacao(0, "2023-02-01", "08:11:23", 1, 1, 200.30, "Saque");
 
-        System.out.println(cli.getID() + " " + cli.getNome());
+        System.out.println(trans.toString());
+        
+        /*System.out.println(cli.getID() + " " + cli.getNome());
         System.out.println(conta1.getSaldo() + " " + conta1.getLimiteSaque());
         if (cli.Sacar(conta1, 2000.01)){
             System.out.println(conta1.getSaldo());
         } else {
             System.out.println("Saque negado.");
-        }
+        }*/
     }
 }

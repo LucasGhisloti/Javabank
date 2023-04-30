@@ -78,4 +78,15 @@ public class Transacao {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
+    @Override
+    public String toString(){
+        String texto;
+        //TODO: substituir id em "DE" e "PARA" por nomes
+        texto = this.getDe()+" -> "+this.getPara()+
+                ", "+this.getData()+" as "+this.getHora()+"\n";
+        texto += "Tipo: "+this.getTipo()+"\n";
+        texto += "Valor: "+this.getQuantia();
+        return texto;
+    }
 }
