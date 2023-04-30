@@ -12,6 +12,6 @@ package com.mycompany.javabank;
 public class Javabank {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Instancias instanc = new Instancias();
     }
 }
