@@ -12,7 +12,7 @@ public class Instancias {
     
     Instancias(){
         Models model = new Models();
-
+        
         model.listaBanco.add(new Banco(1, "JavaBank"));
         model.listaBanco.add(new Banco(2, "Banco Atlas"));
         model.listaBanco.add(new Banco(3, "Fenix Financeiro"));
@@ -38,8 +38,8 @@ public class Instancias {
         model.listaTransacao.add(new Transacao("2023-04-25", "18:01:33", 2, 5, 50.00, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-03-01", "10:31:02", 3, 3, 200.00, "Deposito"));
 
-        for(int i = 0; i< model.listaConta.size(); i++){
-            System.out.println(model.listaConta.get(i).getBancoID()+"\n");
+        for(int i = 1; i< model.listaConta.size(); i++){
+            System.out.println("i= "+i+": "+model.getNomeFromClienteID(i)+"\n");
         }
 
         /*for(int i = 0; i< model.listaTransacao.size(); i++){
