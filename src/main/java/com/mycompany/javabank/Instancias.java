@@ -18,8 +18,6 @@ public class Instancias {
         model.listaBanco.add(new Banco(3, "Fenix Financeiro"));
         model.listaBanco.add(new Banco(4, "Prestige Investimentos"));
 
-        Transacao trans = new Transacao(0, "2023-02-01", "08:11:23", 1, 1, 200.30, "Saque");
-
         model.listaCliente.add(new Cliente(1, "Arnaldo Sacomani", "54.986.782-89", 9632, 78963214));
         model.listaCliente.add(new Cliente(2, "Jorge Ben", "98.741.951-27", 1234, 12345678));
         model.listaCliente.add(new Cliente(3, "John McCarthy", "57.563.951-19", 5637, 78932165));
@@ -35,8 +33,13 @@ public class Instancias {
         model.listaConta.add(new Conta(6, 6, "conta corrente", 3000.00, 1200.00));
         model.listaConta.add(new Conta(7, 6, "conta poupanca", 7000.00, 7000.00));
 
-        for(int i = 0; i< model.listaConta.size(); i++){
-            System.out.println(model.listaConta.get(i).getClienteID()+" - "+model.listaConta.get(i).getSaldo());
+        model.listaTransacao.add(new Transacao(1, "2023-02-01", "08:11:23", 1, 1, 200.30, "Saque"));
+        model.listaTransacao.add(new Transacao(2, "2023-04-30", "12:54:18", 7, 6, 2.50, "Transferencia"));
+        model.listaTransacao.add(new Transacao(3, "2023-04-25", "18:01:33", 2, 5, 50.00, "Transferencia"));
+        model.listaTransacao.add(new Transacao(4, "2023-03-01", "10:31:02", 3, 3, 200.00, "Deposito"));
+
+        for(int i = 0; i< model.listaTransacao.size(); i++){
+            System.out.println(model.listaTransacao.get(i).toString()+"\n\n");
         }
 
         /*System.out.println(trans.toString());
