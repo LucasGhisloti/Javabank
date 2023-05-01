@@ -9,22 +9,16 @@ package com.mycompany.javabank;
  * @author Lucas Ghisloti
  */
 public class Conta {
-    public int ID;
     public int clienteID;
     public String tipo;
     public double saldo;
     public double limiteSaque;
 
-    public Conta(int ID, int clienteID, String tipo, double saldo, double limiteSaque) {
-        this.ID = ID;
+    public Conta(int clienteID, String tipo, double saldo, double limiteSaque) {
         this.clienteID = clienteID;
         this.tipo = tipo;
         this.saldo = saldo;
         this.limiteSaque = limiteSaque;
-    }
-
-    public int getID() {
-        return ID;
     }
 
     public int getClienteID() {
@@ -41,10 +35,6 @@ public class Conta {
 
     public double getLimiteSaque() {
         return limiteSaque;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public void setClienteID(int clienteID) {

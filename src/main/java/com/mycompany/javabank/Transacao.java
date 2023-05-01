@@ -5,7 +5,6 @@ package com.mycompany.javabank;
  * @author Guilherme Jardim
  */
 public class Transacao {
-    public int UUID;
     public String data;
     public String hora;
     public int de;
@@ -13,18 +12,13 @@ public class Transacao {
     public double quantia;
     public String tipo;
 
-    public Transacao(int UUID, String data, String hora, int de, int para, double quantia, String tipo) {
-        this.UUID = UUID;
+    public Transacao(String data, String hora, int de, int para, double quantia, String tipo) {
         this.data = data;
         this.hora = hora;
         this.de = de;
         this.para = para;
         this.quantia = quantia;
         this.tipo = tipo;
-    }
-
-    public int getUUID() {
-        return UUID;
     }
 
     public String getData() {
@@ -49,10 +43,6 @@ public class Transacao {
 
     public String getTipo() {
         return tipo;
-    }
-
-    public void setUUID(int UUID) {
-        this.UUID = UUID;
     }
 
     public void setData(String data) {
