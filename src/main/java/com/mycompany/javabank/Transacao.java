@@ -1,20 +1,23 @@
 package com.mycompany.javabank;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author Guilherme Jardim
  */
 public class Transacao {
-    public String data;
-    public String hora;
+    public LocalDate data;
+    public LocalTime hora;
     public int de;
     public int para;
     public double quantia;
     public String tipo;
 
     public Transacao(String data, String hora, int de, int para, double quantia, String tipo) {
-        this.data = data;
-        this.hora = hora;
+        this.setData(data);
+        this.setHora(hora);
         this.de = de;
         this.para = para;
         this.quantia = quantia;
@@ -22,11 +25,11 @@ public class Transacao {
     }
 
     public String getData() {
-        return data;
+        return this.data.toString();
     }
 
     public String getHora() {
-        return hora;
+        return this.hora.toString();
     }
 
     public int getDe() {
@@ -46,11 +49,12 @@ public class Transacao {
     }
 
     public void setData(String data) {
-        this.data = data;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.data = LocalDate.parse(data, formatter);
     }
 
     public void setHora(String hora) {
-        this.hora = hora;
+        this.hora = LocalTime.parse(hora);
     }
 
     public void setDe(int de) {
