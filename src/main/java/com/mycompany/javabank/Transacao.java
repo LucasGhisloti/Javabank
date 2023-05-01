@@ -73,12 +73,12 @@ public class Transacao {
         this.tipo = tipo;
     }
     
-    @Override
-    public String toString(){
+    public String toString(Models model){
         String texto;
         //TODO: substituir id em "DE" e "PARA" por nomes
-        texto = this.getDe()+" -> "+this.getPara()+
-                ", "+this.getData()+" as "+this.getHora()+"\n";
+        texto = model.getNomeClienteFromContaID(this.getDe())+" -> "+
+                model.getNomeClienteFromContaID(this.getPara())+", "+
+                this.getData()+" as "+this.getHora()+"\n";
         texto += "Tipo: "+this.getTipo()+"\n";
         texto += "Valor: "+this.getQuantia();
         return texto;

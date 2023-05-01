@@ -15,7 +15,8 @@ public class Models {
     ArrayList<Transacao> listaTransacao = new ArrayList<>();
     ArrayList<Banco> listaBanco = new ArrayList<>();
     
-    public String getNomeFromClienteID(int id){
-        return this.listaCliente.get(id-1).getNome();
+    public String getNomeClienteFromContaID(int id){
+        int clienteID = this.listaConta.get(id-1).getClienteID();
+        return this.listaCliente.get(clienteID-1).getNome();
     }
 }
