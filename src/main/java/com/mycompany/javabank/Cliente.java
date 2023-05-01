@@ -4,6 +4,8 @@
  */
 package com.mycompany.javabank;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Lucas Ghisloti
@@ -53,7 +55,17 @@ public class Cliente {
         return this.senhaTransac;
     }
 
-    // TODO: GerarExtrato
+    public void GerarExtrato(Models model){
+        ArrayList<Transacao> extrato;
+        int meuId = model.listaCliente.indexOf(this)+1;
+        extrato = model.getTransacoesFromCliente(meuId);
+
+        extrato.forEach((t) -> {
+            System.out.println(t.toString(model) + "\n");
+        });
+
+        //TODO: Sem transacoes, fala que nao tem
+    }
 
     public boolean Sacar(Conta conta, double valor){
         double novoVal = conta.getSaldo() - valor;

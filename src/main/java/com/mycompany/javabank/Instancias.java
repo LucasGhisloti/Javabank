@@ -37,12 +37,15 @@ public class Instancias {
         model.listaTransacao.add(new Transacao("2023-04-30", "12:54:18", 7, 6, 2.50, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-04-25", "18:01:33", 2, 5, 50.00, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-03-01", "10:31:02", 3, 3, 200.00, "Deposito"));
+        model.listaTransacao.add(new Transacao("2023-01-21", "13:31:02", 3, 2, 100.00, "Transferencia"));
 
+        model.listaCliente.get(2).GerarExtrato(model);
+
+        /*
         for(int i = 0; i< model.listaTransacao.size(); i++){
             System.out.println(model.listaTransacao.get(i).toString(model)+"\n\n");
         }
-
-        /*System.out.println(trans.toString());
+        System.out.println(trans.toString());
         
         System.out.println(cli.getID() + " " + cli.getNome());
         System.out.println(conta1.getSaldo() + " " + conta1.getLimiteSaque());

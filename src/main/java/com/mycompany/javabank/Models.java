@@ -19,4 +19,16 @@ public class Models {
         int clienteID = this.listaConta.get(id-1).getClienteID();
         return this.listaCliente.get(clienteID-1).getNome();
     }
+
+    public ArrayList<Transacao> getTransacoesFromCliente(int clienteID){
+        ArrayList<Transacao> retorno = new ArrayList<>();
+
+        // TODO: ordenar por data
+        this.listaTransacao.forEach((t) -> {
+            if (t.getDe() == clienteID || t.getPara() == clienteID )
+                retorno.add(t);
+        });
+
+        return retorno;
+    }
 }
