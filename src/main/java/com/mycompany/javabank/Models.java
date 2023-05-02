@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.javabank;
+
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 /**
  *
@@ -20,12 +22,14 @@ public class Models {
         return this.listaCliente.get(clienteID-1).getNome();
     }
 
-    public ArrayList<Transacao> getTransacoesFromCliente(int clienteID){
+    public ArrayList<Transacao> getTransacoesFromCliente(int clienteID, LocalDate dtini, LocalDate dtfim){
         ArrayList<Transacao> retorno = new ArrayList<>();
 
         // TODO: ordenar por data
         this.listaTransacao.forEach((t) -> {
-            if (t.getDe() == clienteID || t.getPara() == clienteID )
+            if ((t.getDe() == clienteID || t.getPara() == clienteID) 
+                && ((t.getData().isAfter(dtini) || (t.getData().isEqual(dtini))) && 
+                    (t.getData().isBefore(dtfim)) || (t.getData().isEqual(dtfim))))
                 retorno.add(t);
         });
 

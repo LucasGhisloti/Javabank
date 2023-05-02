@@ -5,6 +5,8 @@
 package com.mycompany.javabank;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -55,10 +57,16 @@ public class Cliente {
         return this.senhaTransac;
     }
 
-    public void GerarExtrato(Models model){
+    public void GerarExtrato(Models model, String dtini, String dtfim){
         ArrayList<Transacao> extrato;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         int meuId = model.listaCliente.indexOf(this)+1;
-        extrato = model.getTransacoesFromCliente(meuId);
+        extrato = model.getTransacoesFromCliente(
+                meuId,
+                LocalDate.parse(dtini, formatter),
+                LocalDate.parse(dtfim, formatter)
+        );
 
         extrato.forEach((t) -> {
             System.out.println(t.toString(model) + "\n");

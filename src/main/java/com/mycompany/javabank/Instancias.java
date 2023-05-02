@@ -38,8 +38,9 @@ public class Instancias {
         model.listaTransacao.add(new Transacao("2023-03-01", "10:31:02", 3, 3, 200.00, "Deposito"));
         model.listaTransacao.add(new Transacao("2023-04-25", "18:01:33", 2, 5, 50.00, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-04-30", "12:54:18", 7, 6, 2.50, "Transferencia"));
+        model.listaTransacao.add(new Transacao("2023-05-01", "20:02:49", 3, 5, 59.35, "Transferencia"));
 
-        model.listaCliente.get(2).GerarExtrato(model);
+        model.listaCliente.get(2).GerarExtrato(model, "2023-03-01", "2023-05-01");
 
         /*
         for(int i = 0; i< model.listaTransacao.size(); i++){

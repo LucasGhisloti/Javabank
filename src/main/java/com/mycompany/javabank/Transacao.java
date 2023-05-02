@@ -1,4 +1,5 @@
 package com.mycompany.javabank;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -24,8 +25,8 @@ public class Transacao {
         this.tipo = tipo;
     }
 
-    public String getData() {
-        return this.data.toString();
+    public LocalDate getData() {
+        return this.data;
     }
 
     public String getHora() {
@@ -78,7 +79,7 @@ public class Transacao {
         //TODO: substituir id em "DE" e "PARA" por nomes
         texto = model.getNomeClienteFromContaID(this.getDe())+" -> "+
                 model.getNomeClienteFromContaID(this.getPara())+", "+
-                this.getData()+" as "+this.getHora()+"\n";
+                this.getData().toString()+" as "+this.getHora()+"\n";
         texto += "Tipo: "+this.getTipo()+"\n";
         texto += "Valor: "+this.getQuantia();
         return texto;
