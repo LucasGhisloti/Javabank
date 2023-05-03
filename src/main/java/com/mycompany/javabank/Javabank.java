@@ -27,7 +27,7 @@ public class Javabank {
         Scanner scanner = new Scanner(System.in);
         Instancias instanc = new Instancias();
         String [] menuLoginItems= {"Login","Nova Conta", "Sair"};
-        String [] menuItems= {"Extrato", "Saque", "Deposito", "Transferencia", "Sair"};
+        String [] menuItems= {"Extrato", "Saque", "Deposito", "Transferencia"};
         String optionX = "";
         String whichmenu="Login";
         Ui login = new Ui(menuLoginItems);
@@ -40,12 +40,12 @@ public class Javabank {
             login.setMenuIndexatual(0);
             if(whichmenu=="Login"){
                 login.setMenuIndexatual(0);
-                login.setMenuItems(menuLoginItems);
+                
                 optionX= login.load("SEJA BEM VINDO ! #################\n","[Down:s "+"Up:w "+"Select:x]");
             }
             else if(whichmenu=="Menu"){
                 menu.setMenuIndexatual(0);
-                menu.setMenuItems(menuItems);
+                
                 optionX= menu.load(clienteAtual.getNome()+"[ID: "+clienteAtual.getID()+"]"+"------Saldo atual: "+contaAtual.getSaldo()+"\n\n","\n[Down:s "+"Up:w "+"Select:x]");
             }
             
@@ -68,6 +68,17 @@ public class Javabank {
                 clienteAtual = instanc.getCliente(Integer.parseInt(IDCliente));
                 
                 contaAtual=instanc.getConta(clienteAtual.getID(),IDBanco,"Conta Corrente");
+
+                //verifica se tem poupanca
+                Conta contaPoupanca=instanc.getConta(clienteAtual.getID(),IDBanco,"Conta Poupanca");
+
+                if(contaPoupanca!=null){
+                    menu.addMenuItem("Saque Poupanca");
+                    menu.addMenuItem("Deposito Poupanca");
+                
+                }
+
+                menu.addMenuItem("Sair");
                 
                 if(clienteAtual.getSenhaLogin()!=Integer.parseInt(senha)){
                     System.out.println("Senha incorreta");
