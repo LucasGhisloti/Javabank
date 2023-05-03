@@ -68,11 +68,13 @@ public class Cliente {
                 LocalDate.parse(dtfim, formatter)
         );
 
-        extrato.forEach((t) -> {
-            System.out.println(t.toString(model) + "\n");
-        });
-
-        //TODO: Sem transacoes, fala que nao tem
+        if(extrato.isEmpty()){
+            System.out.println("Ainda nao ha transacoes nessa conta\n");
+        }else{
+            extrato.forEach((t) -> {
+                System.out.println(t.toString(model) + "\n");
+            });
+        }
     }
 
     public boolean Sacar(Conta conta, double valor){

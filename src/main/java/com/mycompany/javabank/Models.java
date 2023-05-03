@@ -16,7 +16,7 @@ public class Models {
     ArrayList<Conta> listaConta = new ArrayList<>();
     ArrayList<Transacao> listaTransacao = new ArrayList<>();
     ArrayList<Banco> listaBanco = new ArrayList<>();
-    
+
     public String getNomeClienteFromContaID(int id){
         int clienteID = this.listaConta.get(id-1).getClienteID();
         return this.listaCliente.get(clienteID-1).getNome();
@@ -25,7 +25,6 @@ public class Models {
     public ArrayList<Transacao> getTransacoesFromCliente(int clienteID, LocalDate dtini, LocalDate dtfim){
         ArrayList<Transacao> retorno = new ArrayList<>();
 
-        // TODO: ordenar por data
         this.listaTransacao.forEach((t) -> {
             if ((t.getDe() == clienteID || t.getPara() == clienteID) 
                 && ((t.getData().isAfter(dtini) || (t.getData().isEqual(dtini))) && 
