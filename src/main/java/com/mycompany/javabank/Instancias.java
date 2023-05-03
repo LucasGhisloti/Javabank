@@ -32,6 +32,7 @@ public class Instancias {
         model.listaConta.add(new Conta(5, 1, "conta corrente", 1500.00, 1000.00));
         model.listaConta.add(new Conta(6, 1, "conta corrente", 3000.00, 1200.00));
         model.listaConta.add(new Conta(6, 1, "conta poupanca", 7000.00, 7000.00));
+        model.listaConta.add(new Conta(6, 1, "conta poupanca", 0.00, 0.00));
 
         model.listaTransacao.add(new Transacao("2023-01-21", "13:31:02", 3, 2, 100.00, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-02-01", "08:11:23", 1, 1, 200.30, "Saque"));
@@ -39,10 +40,14 @@ public class Instancias {
         model.listaTransacao.add(new Transacao("2023-04-25", "18:01:33", 2, 5, 50.00, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-04-30", "12:54:18", 7, 6, 2.50, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-05-01", "20:02:49", 3, 5, 59.35, "Transferencia"));
-
-        model.listaCliente.get(4).GerarExtrato(model, "2023-03-01", "2023-05-01");
+        
+        model.listaConta.get(7).GerarExtrato(model, "2023-01-01", "2023-05-01");
 
         /*
+        model.listaConta.forEach((t) -> {
+            System.out.println(model.listaConta.indexOf(t)+" - "+t.getClienteID());
+        });
+        
         for(int i = 0; i< model.listaTransacao.size(); i++){
             System.out.println(model.listaTransacao.get(i).toString(model)+"\n\n");
         }

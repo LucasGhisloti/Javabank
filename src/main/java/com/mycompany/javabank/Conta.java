@@ -4,6 +4,10 @@
  */
 package com.mycompany.javabank;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lucas Ghisloti
@@ -61,5 +65,25 @@ public class Conta {
 
     public void setLimiteSaque(double limiteSaque) {
         this.limiteSaque = limiteSaque;
+    }
+    
+    public void GerarExtrato(Models model, String dtini, String dtfim){
+        ArrayList<Transacao> extrato;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        int contaId = model.listaConta.indexOf(this);
+        extrato = model.getTransacoesFromConta(
+                contaId,
+                LocalDate.parse(dtini, formatter),
+                LocalDate.parse(dtfim, formatter)
+        );
+
+        if(extrato.isEmpty()){
+            System.out.println("Nao ha transacoes nesse periodo\n");
+        }else{
+            extrato.forEach((t) -> {
+                System.out.println(t.toString(model) + "\n");
+            });
+        }
     }
 }

@@ -57,26 +57,6 @@ public class Cliente {
         return this.senhaTransac;
     }
 
-    public void GerarExtrato(Models model, String dtini, String dtfim){
-        ArrayList<Transacao> extrato;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        int meuId = model.listaCliente.indexOf(this)+1;
-        extrato = model.getTransacoesFromCliente(
-                meuId,
-                LocalDate.parse(dtini, formatter),
-                LocalDate.parse(dtfim, formatter)
-        );
-
-        if(extrato.isEmpty()){
-            System.out.println("Ainda nao ha transacoes nessa conta\n");
-        }else{
-            extrato.forEach((t) -> {
-                System.out.println(t.toString(model) + "\n");
-            });
-        }
-    }
-
     public boolean Sacar(Conta conta, double valor){
         double novoVal = conta.getSaldo() - valor;
         if (valor > conta.getLimiteSaque()) return false;

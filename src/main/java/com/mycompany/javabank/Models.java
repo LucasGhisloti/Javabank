@@ -22,11 +22,11 @@ public class Models {
         return this.listaCliente.get(clienteID-1).getNome();
     }
 
-    public ArrayList<Transacao> getTransacoesFromCliente(int clienteID, LocalDate dtini, LocalDate dtfim){
+    public ArrayList<Transacao> getTransacoesFromConta(int contaID, LocalDate dtini, LocalDate dtfim){
         ArrayList<Transacao> retorno = new ArrayList<>();
 
         this.listaTransacao.forEach((t) -> {
-            if ((t.getDe() == clienteID || t.getPara() == clienteID) 
+            if ((t.getDe() == contaID || t.getPara() == contaID) 
                 && ((t.getData().isAfter(dtini) || (t.getData().isEqual(dtini))) && 
                     (t.getData().isBefore(dtfim)) || (t.getData().isEqual(dtfim))))
                 retorno.add(t);
