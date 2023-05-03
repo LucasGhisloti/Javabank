@@ -5,6 +5,8 @@
 
 package com.mycompany.javabank;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -24,6 +26,7 @@ public class Javabank {
         Ui menu = new Ui(menuItems);
         Cliente clienteAtual= new Cliente("","",0,0);
         String IDBanco="";
+        Conta contaAtual= new Conta(0,1,"",0,0);
         while(optionX!="Sair"){
             login.setMenuIndexatual(0);
             if(whichmenu=="Login"){
@@ -34,7 +37,7 @@ public class Javabank {
             else if(whichmenu=="Menu"){
                 menu.setMenuIndexatual(0);
                 menu.setMenuItems(menuItems);
-                optionX= menu.load(clienteAtual.getNome()+"[ID: "+clienteAtual.getID()+"]\n");
+                optionX= menu.load(clienteAtual.getNome()+"[ID: "+clienteAtual.getID()+"]\n\n");
             }
             
 
@@ -54,6 +57,7 @@ public class Javabank {
                 //pesquisar conta nas instancias
                 
                 clienteAtual = instanc.getCliente(Integer.parseInt(IDCliente));
+                contaAtual=instanc.getConta(clienteAtual.getID(),Integer.parseInt(IDBanco));
                 
                 if(clienteAtual.getSenhaLogin()!=Integer.parseInt(senha)){
                     System.out.println("Senha incorreta");
@@ -68,8 +72,24 @@ public class Javabank {
 
             //Menu 
             if(optionX=="Extrato" && whichmenu=="Menu"){
-                Conta conta=instanc.getConta(clienteAtual.getID(),Integer.parseInt(IDBanco));
+
+                //transacoes
+                System.out.print("\033[H\033[2J");
+                System.out.println("Extrato\n");
+                List<Transacao> tr=instanc.getTransacoes(clienteAtual.getID(), Integer.parseInt(IDBanco));
+
+                //printando transacoes
+                for(int i=0;i<tr.size();i++){
+                    System.out.println(tr.get(i).data+" "+tr.get(i).getHora()+"| "+tr.get(i).getTipo()+" | "+tr.get(i).quantia);
+                }
+
+                //saldo atual
+                System.out.println("\nSaldo atual: "+contaAtual.getSaldo());
+
+                scanner.nextLine();
+                
             }
+
 
         }
 }}
