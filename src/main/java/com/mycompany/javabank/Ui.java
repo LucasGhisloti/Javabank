@@ -24,6 +24,39 @@ public class Ui {
          this.countItems = menuItems.length;
      }
 
+
+     public String load(String header){
+        String line="";
+        String option="";
+        while(option==""){
+            
+            Scanner scanner = new Scanner(System.in);
+            //limpar tela
+            System.out.print("\033[H\033[2J");
+            System.out.print(header);
+            //System.out.println(line);
+            
+            this.printMenu();
+            //ler tecla do teclado
+            line =  scanner.nextLine();
+
+            if(line.equals("w")){
+                this.upMenu();
+            }else if(line.equals("s")){
+                this.downMenu();
+            }else if(line.equals("x")){
+                option = this.getMenuItems()[this.getMenuIndexatual()];
+                
+            }
+
+            
+
+        }
+        return option;
+     }
+
+     
+
      public String load(){
         String line="";
         String option="";

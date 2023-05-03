@@ -22,6 +22,8 @@ public class Javabank {
         String whichmenu="Login";
         Ui login = new Ui(menuLoginItems);
         Ui menu = new Ui(menuItems);
+        Cliente clienteAtual= new Cliente("","",0,0);
+        String IDBanco="";
         while(optionX!="Sair"){
             login.setMenuIndexatual(0);
             if(whichmenu=="Login"){
@@ -32,7 +34,7 @@ public class Javabank {
             else if(whichmenu=="Menu"){
                 menu.setMenuIndexatual(0);
                 menu.setMenuItems(menuItems);
-                optionX= menu.load();
+                optionX= menu.load(clienteAtual.getNome()+"[ID: "+clienteAtual.getID()+"]\n");
             }
             
 
@@ -45,11 +47,14 @@ public class Javabank {
                 String IDCliente = scanner.nextLine();
                 System.out.println("Digite a senha:");
                 String senha = scanner.nextLine();
+                System.out.println("ID Banco: ");
+                IDBanco =  scanner.nextLine();
                 
 
                 //pesquisar conta nas instancias
                 
-                Cliente clienteAtual = instanc.getCliente(Integer.parseInt(IDCliente));
+                clienteAtual = instanc.getCliente(Integer.parseInt(IDCliente));
+                
                 if(clienteAtual.getSenhaLogin()!=Integer.parseInt(senha)){
                     System.out.println("Senha incorreta");
                     scanner.nextLine();
@@ -62,6 +67,9 @@ public class Javabank {
             }
 
             //Menu 
-            
+            if(optionX=="Extrato" && whichmenu=="Menu"){
+                Conta conta=instanc.getConta(clienteAtual.getID(),Integer.parseInt(IDBanco));
+            }
+
         }
 }}
