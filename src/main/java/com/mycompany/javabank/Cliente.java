@@ -13,12 +13,16 @@ import java.time.format.DateTimeFormatter;
  * @author Lucas Ghisloti
  */
 public class Cliente {
+    public static int idcount = 0;
+    public int ID;
     public String nome;
     private String documento;
     private int senhaLogin;
     private int senhaTransac;
 
+
     Cliente(String nome, String documento, int senhaLogin, int senhaTransac){
+        this.ID = idcount++;
         this.setNome(nome);
         this.setSenhaLogin(senhaLogin);
         this.setSenhaTransac(senhaTransac);
@@ -31,6 +35,9 @@ public class Cliente {
 
     public String getNome(){
         return this.nome;
+    }
+    public int getID(){
+        return this.ID;
     }
 
     public void setDocumento(String documento){

@@ -4,14 +4,17 @@
  */
 package com.mycompany.javabank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Lucas Ghisloti
  */
 public class Instancias {
-    
+    Models model;
     Instancias(){
-        Models model = new Models();
+         this.model = new Models();
         
         model.listaBanco.add(new Banco(1, "JavaBank"));
         model.listaBanco.add(new Banco(2, "Banco Atlas"));
@@ -41,7 +44,7 @@ public class Instancias {
         model.listaTransacao.add(new Transacao("2023-04-30", "12:54:18", 7, 6, 2.50, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-05-01", "20:02:49", 3, 5, 59.35, "Transferencia"));
         
-        model.listaConta.get(6).GerarExtrato(model, "2023-01-01", "2023-05-01");
+        //model.listaConta.get(6).GerarExtrato(model, "2023-01-01", "2023-05-01");
 
         /*
         model.listaConta.forEach((t) -> {
@@ -60,5 +63,45 @@ public class Instancias {
         } else {
             System.out.println("Saque negado.");
         }*/
+    }
+
+    public Conta getConta(int id, int banco){
+        
+        for(int i = 0; i< model.listaConta.size(); i++){
+            if(model.listaConta.get(i).getClienteID() == id && model.listaConta.get(i).getBancoID() == banco){
+                return model.listaConta.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Cliente getCliente(int id){
+        
+        for(int i = 0; i< model.listaCliente.size(); i++){
+            if(model.listaCliente.get(i).getID() == id){
+                return model.listaCliente.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Banco getBanco(int id){
+        
+        for(int i = 0; i< model.listaBanco.size(); i++){
+            if(model.listaBanco.get(i).getID() == id){
+                return model.listaBanco.get(i);
+            }
+        }
+        return null;
+    }
+
+    public List<Transacao> getTransacoes(int id, int banco){
+        ArrayList<Transacao> transacoes = new ArrayList<Transacao>();
+        for(Transacao t : model.listaTransacao){
+            if(t.getDe() == id){
+                transacoes.add(t);
+            }
+        }
+        return transacoes;
     }
 }
