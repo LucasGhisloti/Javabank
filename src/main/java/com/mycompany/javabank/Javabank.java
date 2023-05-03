@@ -101,6 +101,37 @@ public class Javabank {
                 scanner.nextLine();
                 
             }
+            if(optionX=="Saque" && whichmenu=="Menu"){
+                System.out.print("\033[H\033[2J");
+                System.out.println("Saque\n");
+                System.out.println("Digite o valor do saque:");
+                String valor = scanner.nextLine();
+                
+                if(clienteAtual.Sacar(contaAtual,Double.parseDouble(valor))){
+                    System.out.println("Saque realizado com sucesso!");
+                }else{
+                    System.out.println("Saldo insuficiente!");
+                }
+
+
+                System.out.println("Pressione enter para voltar!");
+                scanner.nextLine();
+            }
+            if(optionX=="Deposito" && whichmenu=="Menu"){
+                System.out.print("\033[H\033[2J");
+                System.out.println("Deposito\n");
+                System.out.println("Digite o valor do deposito:");
+                String valor = scanner.nextLine();
+                
+                clienteAtual.Depositar(contaAtual,Double.parseDouble(valor));
+
+            }
+
+
+
+
+
+
 
 
         }

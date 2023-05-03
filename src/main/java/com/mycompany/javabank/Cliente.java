@@ -68,7 +68,8 @@ public class Cliente {
         double novoVal = conta.getSaldo() - valor;
         if (valor > conta.getLimiteSaque()) return false;
         if (novoVal < 0) return false;
-
+        //TODO: Registrar nas transações
+        
         conta.setSaldo(conta.getSaldo() - valor);
         return true;
     }
@@ -76,5 +77,6 @@ public class Cliente {
     public void Depositar(Conta conta, double valor){
         double novoVal = conta.getSaldo() + valor;
         conta.setSaldo(novoVal);
+        //TODO: Registrar nas transações
     }
 }
