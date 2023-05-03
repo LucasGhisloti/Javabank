@@ -66,7 +66,7 @@ public class Conta {
     public void setLimiteSaque(double limiteSaque) {
         this.limiteSaque = limiteSaque;
     }
-    
+
     public void GerarExtrato(Models model, String dtini, String dtfim){
         ArrayList<Transacao> extrato;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -78,6 +78,8 @@ public class Conta {
                 LocalDate.parse(dtfim, formatter)
         );
 
+        System.out.println(this.tipo+"\n");
+
         if(extrato.isEmpty()){
             System.out.println("Nao ha transacoes nesse periodo\n");
         }else{
@@ -85,5 +87,7 @@ public class Conta {
                 System.out.println(t.toString(model) + "\n");
             });
         }
+
+        System.out.println("Saldo atual: "+this.getSaldo()+"\n");
     }
 }
