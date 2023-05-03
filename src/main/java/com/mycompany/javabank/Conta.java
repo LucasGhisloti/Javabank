@@ -18,8 +18,10 @@ public class Conta {
     public String tipo;
     public double saldo;
     public double limiteSaque;
-
+    private static int IDcount = 0;
+    public int ID;
     public Conta(int clienteID, int bancoID, String tipo, double saldo, double limiteSaque) {
+        this.ID= IDcount++;
         this.clienteID = clienteID;
         this.bancoID = bancoID;
         this.tipo = tipo;

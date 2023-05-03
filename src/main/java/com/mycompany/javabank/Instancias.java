@@ -12,7 +12,7 @@ import java.util.List;
  * @author Lucas Ghisloti
  */
 public class Instancias {
-    Models model;
+    public Models model;
     Instancias(){
          this.model = new Models();
         
@@ -75,6 +75,16 @@ public class Instancias {
         return null;
     }
 
+    public Conta getConta(int id, int banco, String tipo){
+        
+        for(int i = 0; i< model.listaConta.size(); i++){
+            if(model.listaConta.get(i).getClienteID() == id && model.listaConta.get(i).getBancoID() == banco && model.listaConta.get(i).getTipo() == tipo){
+                return model.listaConta.get(i);
+            }
+        }
+        return null;
+    }
+
     public Cliente getCliente(int id){
         
         for(int i = 0; i< model.listaCliente.size(); i++){
@@ -89,6 +99,16 @@ public class Instancias {
         
         for(int i = 0; i< model.listaBanco.size(); i++){
             if(model.listaBanco.get(i).getID() == id){
+                return model.listaBanco.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Banco getBancobyName(String nome){
+        
+        for(int i = 0; i< model.listaBanco.size(); i++){
+            if(model.listaBanco.get(i).getNome()== nome){
                 return model.listaBanco.get(i);
             }
         }

@@ -5,9 +5,15 @@
 
 package com.mycompany.javabank;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -16,6 +22,8 @@ import java.util.Scanner;
 public class Javabank {
 
     public static void main(String[] args) {
+
+        
         Scanner scanner = new Scanner(System.in);
         Instancias instanc = new Instancias();
         String [] menuLoginItems= {"Login","Nova Conta", "Sair"};
@@ -25,19 +33,20 @@ public class Javabank {
         Ui login = new Ui(menuLoginItems);
         Ui menu = new Ui(menuItems);
         Cliente clienteAtual= new Cliente("","",0,0);
-        String IDBanco="";
+        int IDBanco= instanc.getBancobyName("JavaBank").getID();
         Conta contaAtual= new Conta(0,1,"",0,0);
+       
         while(optionX!="Sair"){
             login.setMenuIndexatual(0);
             if(whichmenu=="Login"){
                 login.setMenuIndexatual(0);
                 login.setMenuItems(menuLoginItems);
-                optionX= login.load();
+                optionX= login.load("SEJA BEM VINDO ! #################\n","[Down:s "+"Up:w "+"Select:x]");
             }
             else if(whichmenu=="Menu"){
                 menu.setMenuIndexatual(0);
                 menu.setMenuItems(menuItems);
-                optionX= menu.load(clienteAtual.getNome()+"[ID: "+clienteAtual.getID()+"]\n\n");
+                optionX= menu.load(clienteAtual.getNome()+"[ID: "+clienteAtual.getID()+"]"+"------Saldo atual: "+contaAtual.getSaldo()+"\n\n","\n[Down:s "+"Up:w "+"Select:x]");
             }
             
 
@@ -50,14 +59,15 @@ public class Javabank {
                 String IDCliente = scanner.nextLine();
                 System.out.println("Digite a senha:");
                 String senha = scanner.nextLine();
-                System.out.println("ID Banco: ");
-                IDBanco =  scanner.nextLine();
+                //System.out.println("ID Banco: ");
+                //IDBanco =  scanner.nextLine();
                 
 
                 //pesquisar conta nas instancias
                 
                 clienteAtual = instanc.getCliente(Integer.parseInt(IDCliente));
-                contaAtual=instanc.getConta(clienteAtual.getID(),Integer.parseInt(IDBanco));
+                
+                contaAtual=instanc.getConta(clienteAtual.getID(),IDBanco,"Conta Corrente");
                 
                 if(clienteAtual.getSenhaLogin()!=Integer.parseInt(senha)){
                     System.out.println("Senha incorreta");
@@ -76,15 +86,17 @@ public class Javabank {
                 //transacoes
                 System.out.print("\033[H\033[2J");
                 System.out.println("Extrato\n");
-                List<Transacao> tr=instanc.getTransacoes(clienteAtual.getID(), Integer.parseInt(IDBanco));
+                LocalDate data = LocalDate.now();
 
-                //printando transacoes
-                for(int i=0;i<tr.size();i++){
-                    System.out.println(tr.get(i).data+" "+tr.get(i).getHora()+"| "+tr.get(i).getTipo()+" | "+tr.get(i).quantia);
-                }
+                DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-                //saldo atual
-                System.out.println("\nSaldo atual: "+contaAtual.getSaldo());
+                data = LocalDate.parse(data.toString(), dateFormat);
+                LocalDate data_minus60 = LocalDate.parse(data.minusDays(60).toString(), dateFormat);
+
+
+                
+                contaAtual.GerarExtrato(instanc.model,data.toString(),data_minus60.toString());
+
 
                 scanner.nextLine();
                 

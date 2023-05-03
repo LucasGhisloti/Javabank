@@ -25,7 +25,7 @@ public class Ui {
      }
 
 
-     public String load(String header){
+     public String load(String header,String footer){
         String line="";
         String option="";
         while(option==""){
@@ -38,6 +38,7 @@ public class Ui {
             
             this.printMenu();
             //ler tecla do teclado
+            System.out.print(footer);
             line =  scanner.nextLine();
 
             if(line.equals("w")){
