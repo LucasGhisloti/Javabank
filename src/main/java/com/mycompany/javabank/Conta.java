@@ -18,7 +18,7 @@ public class Conta {
     public String tipo;
     public double saldo;
     public double limiteSaque;
-    private static int IDcount = 0;
+    private static int IDcount = 1;
     public int ID;
     public Conta(int clienteID, int bancoID, String tipo, double saldo, double limiteSaque) {
         this.ID= IDcount++;
@@ -73,9 +73,9 @@ public class Conta {
         ArrayList<Transacao> extrato;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        int contaId = model.listaConta.indexOf(this);
+        
         extrato = model.getTransacoesFromConta(
-                contaId,
+                this.ID,
                 LocalDate.parse(dtini, formatter),
                 LocalDate.parse(dtfim, formatter)
         );

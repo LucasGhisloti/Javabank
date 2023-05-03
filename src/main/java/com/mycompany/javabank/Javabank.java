@@ -91,13 +91,13 @@ public class Javabank {
                 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 data = LocalDate.parse(data.toString(), dateFormat);
-                LocalDate data_minus60 = LocalDate.parse(data.minusDays(60).toString(), dateFormat);
+                LocalDate data_minus60 = LocalDate.parse(data.minusDays(300).toString(), dateFormat);
 
 
                 
-                contaAtual.GerarExtrato(instanc.model,data.toString(),data_minus60.toString());
+                contaAtual.GerarExtrato(instanc.model,data_minus60.toString(),data.toString());
 
-
+                System.out.println("Pressione enter para voltar!");
                 scanner.nextLine();
                 
             }

@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
  * @author Lucas Ghisloti
  */
 public class Cliente {
-    public static int idcount = 0;
+    public static int idcount = 1;
     public int ID;
     public String nome;
     private String documento;
