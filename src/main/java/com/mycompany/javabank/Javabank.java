@@ -36,7 +36,8 @@ public class Javabank {
             }
             
 
-            if(optionX=="Login"){
+            //LOGIN
+            if(optionX=="Login" && whichmenu=="Login"){
                 //limpar tela
                 System.out.print("\033[H\033[2J");
                 System.out.println("Login\n");
@@ -59,5 +60,8 @@ public class Javabank {
                 
 
             }
+
+            //Menu 
+            
         }
 }}
