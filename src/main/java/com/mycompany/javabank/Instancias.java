@@ -40,7 +40,7 @@ public class Instancias {
         model.listaTransacao.add(new Transacao("2023-04-30", "12:54:18", 7, 6, 2.50, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-05-01", "20:02:49", 3, 5, 59.35, "Transferencia"));
 
-        model.listaCliente.get(3).GerarExtrato(model, "2023-03-01", "2023-05-01");
+        model.listaCliente.get(4).GerarExtrato(model, "2023-03-01", "2023-05-01");
 
         /*
         for(int i = 0; i< model.listaTransacao.size(); i++){

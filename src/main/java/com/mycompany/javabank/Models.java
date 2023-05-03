@@ -34,4 +34,9 @@ public class Models {
 
         return retorno;
     }
+
+    public String getNomeBancoFromClienteBancoID(int id){
+        int bancoID = this.listaConta.get(id-1).getBancoID();
+        return this.listaBanco.get(bancoID-1).getNome();
+    }
 }

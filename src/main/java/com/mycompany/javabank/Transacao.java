@@ -76,9 +76,11 @@ public class Transacao {
     
     public String toString(Models model){
         String texto;
-        //TODO: substituir id em "DE" e "PARA" por nomes
-        texto = model.getNomeClienteFromContaID(this.getDe())+" -> "+
-                model.getNomeClienteFromContaID(this.getPara())+", "+
+
+        texto = "Cliente: "+model.getNomeClienteFromContaID(this.getDe())+
+                ", Banco: "+model.getNomeBancoFromClienteBancoID(this.getDe())+" -> "+
+                "Cliente: "+model.getNomeClienteFromContaID(this.getPara())+
+                ", Banco: "+model.getNomeBancoFromClienteBancoID(this.getPara())+"\n"+
                 this.getData().toString()+" as "+this.getHora()+"\n";
         texto += "Tipo: "+this.getTipo()+"\n";
         texto += "Valor: "+this.getQuantia();
