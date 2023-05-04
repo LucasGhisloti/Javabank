@@ -12,7 +12,7 @@ public class Ui {
      public Ui() {
          this.menuItems = new String[0];
          this.menuIndexatual = 0;
-         this.menuSelector = "->";
+         this.menuSelector = "> ";
          this.countItems = 0;
          
      }
@@ -20,7 +20,7 @@ public class Ui {
      public Ui(String[] menuItems) {
          this.menuItems = menuItems;
          this.menuIndexatual = 0;
-         this.menuSelector = "->";
+         this.menuSelector = "> ";
          this.countItems = menuItems.length;
      }
 
