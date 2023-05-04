@@ -8,18 +8,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- *
- * @author Lucas Ghisloti
- */
-public class Conta {
-    public int clienteID;
-    public int bancoID;
-    public String tipo;
-    public double saldo;
-    public double limiteSaque;
 
+public class Conta {
+    private int clienteID;
+    private int bancoID;
+    private String tipo;
+    private double saldo;
+    private double limiteSaque;
+    private static int IDcount = 1;
+    private int ID;
     public Conta(int clienteID, int bancoID, String tipo, double saldo, double limiteSaque) {
+        this.ID= IDcount++;
         this.clienteID = clienteID;
         this.bancoID = bancoID;
         this.tipo = tipo;
@@ -31,6 +30,9 @@ public class Conta {
         return clienteID;
     }
 
+    public int getID() {
+        return ID;
+    }
     public int getBancoID() {
         return bancoID;
     }
@@ -71,9 +73,9 @@ public class Conta {
         ArrayList<Transacao> extrato;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        int contaId = model.listaConta.indexOf(this);
+        
         extrato = model.getTransacoesFromConta(
-                contaId,
+                this.ID,
                 LocalDate.parse(dtini, formatter),
                 LocalDate.parse(dtfim, formatter)
         );
