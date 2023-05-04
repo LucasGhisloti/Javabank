@@ -241,6 +241,7 @@ public class Javabank {
 
                 try {
                     clienteAtual.Sacar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
+                    System.out.println("Saque feito com sucesso!\n");
                 } catch (SaldoInsuficienteException e) {
                     System.out.println(e.getMessage());
                 } catch (limiteSaqueException e) {
@@ -259,6 +260,7 @@ public class Javabank {
                 String valor = scanner.nextLine();
 
                 clienteAtual.Depositar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
+                System.out.println("Deposito feito com sucesso!\n");
 
             }
 
@@ -305,6 +307,7 @@ public class Javabank {
                 } while (!condition);
 
                 clienteAtual.Transferencia(instanc.getModel(), contaAtual, contaDestino, Double.parseDouble(valor));
+                System.out.println("Transferencia feita com sucesso!\n");
             }
 
             // Saque Poupanca
@@ -319,6 +322,7 @@ public class Javabank {
 
                 try {
                     clienteAtual.Sacar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
+                    System.out.println("Saque feito com sucesso!\n");
                 } catch (SaldoInsuficienteException e) {
                     System.out.println(e.getMessage());
                 } catch (limiteSaqueException e) {
@@ -341,7 +345,7 @@ public class Javabank {
 
                 clienteAtual.Depositar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
 
-                System.out.println("Pressione enter para voltar!");
+                System.out.println("Deposito feito com sucesso!");
             }
 
             // Saldo Poupanca
