@@ -286,15 +286,25 @@ public class Javabank {
                 String optionConta = selecaoConta.load("Selecione o tipo de conta que recebera a transferencia: \n\n",
                         "[Down:s " + "Up:w " + "Select:x]");
 
-                if (optionConta == "Voltar") {
+                if (optionConta.equals("Voltar")) {
                     continue;
                 }
 
                 Cliente clienteDestino = instanc.getCliente(Integer.parseInt(IDCliente));
                 Conta contaDestino = instanc.getConta(clienteDestino.getID(), IDBanco, optionConta);
+                
+                System.out.println("Insira a senha de transacao:");
+                boolean condition = false;
+                do {
+                    int senha = Integer.parseInt(scanner.nextLine());
+                    if(senha == clienteAtual.getSenhaTransac()){
+                        condition = true;
+                    }else{
+                        System.out.println("Senha incorreta! Tente novamente.");
+                    }
+                } while (!condition);
 
                 clienteAtual.Transferencia(instanc.getModel(), contaAtual, contaDestino, Double.parseDouble(valor));
-
             }
 
             // Saque Poupanca
