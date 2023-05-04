@@ -11,9 +11,9 @@ import java.time.format.DateTimeFormatter;
 
 
 public class Cliente {
-    public static int idcount = 1;
-    public int ID;
-    public String nome;
+    private static int idcount = 1;
+    private int ID;
+    private String nome;
     private String documento;
     private int senhaLogin;
     private int senhaTransac;
@@ -111,7 +111,7 @@ public class Cliente {
         //hora formato "HH:mm:ss"
         String horaString = data_atual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        model.listaTransacao.add(new Transacao(dataString,horaString,this.ID,contaDestino.ID, valor, "Transferencia"));
+        model.listaTransacao.add(new Transacao(dataString,horaString,this.ID,contaDestino.getID(), valor, "Transferencia"));
 
         return true;
     }

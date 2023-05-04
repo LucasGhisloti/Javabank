@@ -53,7 +53,7 @@ public class Javabank {
             if(whichmenu=="Login"){
                 login.setMenuIndexatual(0);
                 
-                optionX= login.load("SEJA BEM VINDO ! #################\n","[Down:s "+"Up:w "+"Select:x]");
+                optionX= login.load(" SEJA BEM VINDO ! #################\n","[Down:s "+"Up:w "+"Select:x]");
             }
             else if(whichmenu=="Menu"){
                 menu.setMenuIndexatual(0);
@@ -136,7 +136,7 @@ public class Javabank {
 
 
                 
-                contaAtual.GerarExtrato(instanc.model,data_minus60.toString(),data.toString());
+                contaAtual.GerarExtrato(instanc.getModel(),data_minus60.toString(),data.toString());
 
                 System.out.println("Pressione enter para voltar!");
                 scanner.nextLine();
@@ -151,7 +151,7 @@ public class Javabank {
                 String valor = scanner.nextLine();
                 
                 try {
-                    clienteAtual.Sacar(instanc.model,contaAtual,Double.parseDouble(valor));
+                    clienteAtual.Sacar(instanc.getModel(),contaAtual,Double.parseDouble(valor));
                 } catch (SaldoInsuficienteException e) {
                     System.out.println(e.getMessage());
                 }catch (limiteSaqueException e) {
@@ -171,7 +171,7 @@ public class Javabank {
                 System.out.println("Digite o valor do deposito:");
                 String valor = scanner.nextLine();
                 
-                clienteAtual.Depositar(instanc.model,contaAtual,Double.parseDouble(valor));
+                clienteAtual.Depositar(instanc.getModel(),contaAtual,Double.parseDouble(valor));
 
             }
 
@@ -211,7 +211,7 @@ public class Javabank {
                 Cliente clienteDestino = instanc.getCliente(Integer.parseInt(IDCliente));
                 Conta contaDestino = instanc.getConta(clienteDestino.getID(),IDBanco,optionConta);
                 
-                clienteAtual.Transferencia(instanc.model, contaAtual, contaDestino, Double.parseDouble(valor));
+                clienteAtual.Transferencia(instanc.getModel(), contaAtual, contaDestino, Double.parseDouble(valor));
 
             }
 
@@ -226,7 +226,7 @@ public class Javabank {
                 String valor = scanner.nextLine();
                 
                 try {
-                    clienteAtual.Sacar(instanc.model,contaPoupanca,Double.parseDouble(valor));
+                    clienteAtual.Sacar(instanc.getModel(),contaPoupanca,Double.parseDouble(valor));
                 } catch (SaldoInsuficienteException e) {
                     System.out.println(e.getMessage());
                 }catch (limiteSaqueException e) {
@@ -247,7 +247,7 @@ public class Javabank {
                 System.out.println("Digite o valor do deposito:");
                 String valor = scanner.nextLine();
 
-                clienteAtual.Depositar(instanc.model,contaPoupanca,Double.parseDouble(valor));
+                clienteAtual.Depositar(instanc.getModel(),contaPoupanca,Double.parseDouble(valor));
 
                 System.out.println("Pressione enter para voltar!");
             }

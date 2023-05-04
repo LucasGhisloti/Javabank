@@ -10,13 +10,13 @@ import java.util.ArrayList;
 
 
 public class Conta {
-    public int clienteID;
-    public int bancoID;
-    public String tipo;
-    public double saldo;
-    public double limiteSaque;
+    private int clienteID;
+    private int bancoID;
+    private String tipo;
+    private double saldo;
+    private double limiteSaque;
     private static int IDcount = 1;
-    public int ID;
+    private int ID;
     public Conta(int clienteID, int bancoID, String tipo, double saldo, double limiteSaque) {
         this.ID= IDcount++;
         this.clienteID = clienteID;
@@ -30,6 +30,9 @@ public class Conta {
         return clienteID;
     }
 
+    public int getID() {
+        return ID;
+    }
     public int getBancoID() {
         return bancoID;
     }

@@ -1,8 +1,8 @@
 package com.mycompany.javabank;
 
 public class Banco {
-    public int ID;
-    public String nome;
+    private int ID;
+    private String nome;
 
     public Banco(int ID, String nome) {
         this.ID = ID;

@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class Instancias {
-    public Models model;
+    private Models model;
     Instancias(){
          this.model = new Models();
         
@@ -72,6 +72,10 @@ public class Instancias {
         return null;
     }
 
+    public Models getModel(){
+        return this.model;
+    }
+
     public Conta getConta(int id, int banco, String tipo){
         
         for(int i = 0; i< model.listaConta.size(); i++){
@@ -121,4 +125,6 @@ public class Instancias {
         }
         return transacoes;
     }
+
+
 }

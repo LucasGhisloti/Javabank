@@ -6,12 +6,12 @@ import java.time.format.DateTimeFormatter;
 
 
 public class Transacao {
-    public LocalDate data;
-    public LocalTime hora;
-    public int de;
-    public int para;
-    public double quantia;
-    public String tipo;
+    private LocalDate data;
+    private LocalTime hora;
+    private int de;
+    private int para;
+    private double quantia;
+    private String tipo;
 
     public Transacao(String data, String hora, int de, int para, double quantia, String tipo) {
         this.setData(data);
