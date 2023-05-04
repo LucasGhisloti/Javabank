@@ -44,13 +44,14 @@ public class Javabank {
         Cliente clienteAtual = new Cliente("", "", 0, 0);
         int IDBanco = instanc.getBancobyName("JavaBank").getID();
         Conta contaAtual = new Conta(0, 1, "", 0, 0);
+        final String footer = "[Down:s Up:w Select:x]: ";
 
         while (optionX != "Sair") {
             login.setMenuIndexatual(0);
             if (whichmenu == "Login") {
                 login.setMenuIndexatual(0);
 
-                optionX = login.load(" SEJA BEM VINDO ! #################\n", "[Down:s " + "Up:w " + "Select:x]");
+                optionX = login.load("JavaBank: seja bem-vindo!\n", footer);
             } else if (whichmenu == "Menu") {
                 menu.setMenuIndexatual(0);
 
@@ -286,7 +287,7 @@ public class Javabank {
 
                 selecaoConta.setMenuIndexatual(0);
                 String optionConta = selecaoConta.load("Selecione o tipo de conta que recebera a transferencia: \n\n",
-                        "[Down:s " + "Up:w " + "Select:x]");
+                        footer);
 
                 if (optionConta.equals("Voltar")) {
                     continue;
