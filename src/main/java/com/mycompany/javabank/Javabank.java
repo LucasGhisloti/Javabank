@@ -56,7 +56,7 @@ public class Javabank {
             if (whichmenu == "Login") {
                 login.setMenuIndexatual(0);
 
-                optionX = login.load("JavaBank: seja bem-vindo!\n", footer);
+                optionX = login.load("\nJavaBank: seja bem-vindo!\n", footer);
             } else if (whichmenu == "Menu") {
                 menu.setMenuIndexatual(0);
 
@@ -134,7 +134,7 @@ public class Javabank {
                         cliente.setSenhaLogin(Integer.parseInt(senha));
                         condition = true;
                     }else{
-                        System.out.println("Senhas não conferem!\n Pressione enter para continuar");
+                        System.out.print("Senhas não conferem!\nPressione enter para continuar");
                         scanner.nextLine();
                     }
                     
@@ -152,7 +152,7 @@ public class Javabank {
                         cliente.setSenhaLogin(Integer.parseInt(senha));
                         condition = true;
                     }else{
-                        System.out.println("Senhas não conferem!\nPressione enter para continuar.");
+                        System.out.print("Senhas não conferem!\nPressione enter para continuar.");
                         scanner.nextLine();
                     }
                     
@@ -195,9 +195,9 @@ public class Javabank {
                     instanc.getModel().listaConta.add(contaPoupanca);
                 }
 
-                System.out.println("\nConta criada com sucesso!\n\n"
+                System.out.print("\nConta criada com sucesso!\n"
                         + "GRAVE SEUS DADOS E NÃO PERCA!\n"
-                        + "- Seu ID é ["+cliente.getID()+"].\n\n"
+                        + "- Seu ID é ["+cliente.getID()+"].\n"
                         + "Pressione enter para continuar...");
                 scanner.nextLine();
             }
@@ -217,7 +217,7 @@ public class Javabank {
 
                 contaAtual.GerarExtrato(instanc.getModel(), data_minus60.toString(), data.toString());
 
-                System.out.println("Pressione enter para voltar!");
+                System.out.print("Pressione enter para voltar!");
                 scanner.nextLine();
 
             }
@@ -249,7 +249,7 @@ public class Javabank {
                     System.out.println(e.getMessage());
                 }
 
-                System.out.println("Pressione enter para voltar!");
+                System.out.print("Pressione enter para voltar!");
                 scanner.nextLine();
             }
 
@@ -339,7 +339,7 @@ public class Javabank {
                     System.out.println(e.getMessage());
                 }
 
-                System.out.println("Pressione enter para voltar!");
+                System.out.print("Pressione enter para voltar!");
                 scanner.nextLine();
 
             }
@@ -363,7 +363,7 @@ public class Javabank {
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 imprimeTitulo("Saldo Poupanca");
                 System.out.println("Saldo: " + contaPoupanca.getSaldo());
-                System.out.println("Pressione enter para voltar!");
+                System.out.print("Pressione enter para voltar!");
                 scanner.nextLine();
 
             }
