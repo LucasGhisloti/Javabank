@@ -32,7 +32,8 @@ class limiteSaqueException extends Exception {
 public class Javabank {
     
     static void imprimeTitulo(String titulo){
-        System.out.println("\n\033[H\033[2J" + titulo.toUpperCase());
+        System.out.println("\n\033[H\033[2J"
+                + "<< " + titulo + " >>");
     }
 
     public static void main(String[] args) {
