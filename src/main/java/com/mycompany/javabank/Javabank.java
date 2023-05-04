@@ -5,10 +5,12 @@
 
 package com.mycompany.javabank;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +20,21 @@ import javax.swing.text.DateFormatter;
 /**
  *
  * @author Lucas Ghisloti
+ * @author Leonardo Bezerra
  */
+
+ class SaldoInsuficienteException extends Exception{
+    public SaldoInsuficienteException(String message){
+        super(message);
+    }
+}
+
+class limiteSaqueException extends Exception{
+    public limiteSaqueException(String message){
+        super(message);
+    }
+}
+
 public class Javabank {
 
     public static void main(String[] args) {
@@ -75,10 +91,13 @@ public class Javabank {
                 if(contaPoupanca!=null){
                     menu.addMenuItem("Saque Poupanca");
                     menu.addMenuItem("Deposito Poupanca");
+                    menu.addMenuItem("Saldo Poupanca");
                 
                 }
-
-                menu.addMenuItem("Sair");
+                if("Sair" != new ArrayList<>(Arrays.asList(menu.getMenuItems())).get(menu.getMenuItems().length-1)){
+                    menu.addMenuItem("Sair");
+                }
+                
                 
                 if(clienteAtual.getSenhaLogin()!=Integer.parseInt(senha)){
                     System.out.println("Senha incorreta");
@@ -91,7 +110,9 @@ public class Javabank {
 
             }
 
-            //Menu 
+            //Menu
+            
+            //Extrato
             if(optionX=="Extrato" && whichmenu=="Menu"){
 
                 //transacoes
@@ -112,31 +133,131 @@ public class Javabank {
                 scanner.nextLine();
                 
             }
+            //Saque
             if(optionX=="Saque" && whichmenu=="Menu"){
                 System.out.print("\033[H\033[2J");
                 System.out.println("Saque\n");
                 System.out.println("Digite o valor do saque:");
                 String valor = scanner.nextLine();
                 
-                if(clienteAtual.Sacar(contaAtual,Double.parseDouble(valor))){
-                    System.out.println("Saque realizado com sucesso!");
-                }else{
-                    System.out.println("Saldo insuficiente!");
+                try {
+                    clienteAtual.Sacar(instanc.model,contaAtual,Double.parseDouble(valor));
+                } catch (SaldoInsuficienteException e) {
+                    System.out.println(e.getMessage());
+                }catch (limiteSaqueException e) {
+                    System.out.println(e.getMessage());
                 }
+                
 
 
                 System.out.println("Pressione enter para voltar!");
                 scanner.nextLine();
             }
+            //Deposito
             if(optionX=="Deposito" && whichmenu=="Menu"){
                 System.out.print("\033[H\033[2J");
                 System.out.println("Deposito\n");
                 System.out.println("Digite o valor do deposito:");
                 String valor = scanner.nextLine();
                 
-                clienteAtual.Depositar(contaAtual,Double.parseDouble(valor));
+                clienteAtual.Depositar(instanc.model,contaAtual,Double.parseDouble(valor));
 
             }
+
+            //Transferencia
+            if(optionX=="Transferencia" && whichmenu=="Menu"){
+                System.out.print("\033[H\033[2J");
+                System.out.println("Transferencia\n");
+                System.out.println("Digite o valor da transferencia:");
+                String valor = scanner.nextLine();
+                System.out.println("Digite o ID do cliente que recebera a transferencia:");
+                String IDCliente = scanner.nextLine();
+                
+
+                String [] tipodecontas = {"Conta Corrente"};
+
+                
+                
+                
+                
+                Ui selecaoConta = new Ui(tipodecontas);
+                //verifica se destino tem poupanca
+                Conta contaPoupanca=instanc.getConta(Integer.parseInt(IDCliente),IDBanco,"Conta Poupanca");
+
+                if(contaPoupanca!=null){
+                    selecaoConta.addMenuItem("Conta Poupanca");
+                }
+                selecaoConta.addMenuItem("Voltar");
+
+                
+                selecaoConta.setMenuIndexatual(0);
+                String optionConta = selecaoConta.load("Selecione o tipo de conta que recebera a transferencia: \n\n","[Down:s "+"Up:w "+"Select:x]");
+                
+                if(optionConta=="Voltar"){
+                    continue;
+                }
+
+                Cliente clienteDestino = instanc.getCliente(Integer.parseInt(IDCliente));
+                Conta contaDestino = instanc.getConta(clienteDestino.getID(),IDBanco,optionConta);
+                
+                clienteAtual.Transferencia(instanc.model, contaAtual, contaDestino, Double.parseDouble(valor));
+
+            }
+
+            //Saque Poupanca
+            if(optionX=="Saque Poupanca" && whichmenu=="Menu"){
+                //pegar poupanca
+                Conta contaPoupanca=instanc.getConta(clienteAtual.getID(),IDBanco,"Conta Poupanca");
+                
+                System.out.print("\033[H\033[2J");
+                System.out.println("Saque Poupanca\n");
+                System.out.println("Digite o valor do saque:");
+                String valor = scanner.nextLine();
+                
+                try {
+                    clienteAtual.Sacar(instanc.model,contaPoupanca,Double.parseDouble(valor));
+                } catch (SaldoInsuficienteException e) {
+                    System.out.println(e.getMessage());
+                }catch (limiteSaqueException e) {
+                    System.out.println(e.getMessage());
+                }
+
+                System.out.println("Pressione enter para voltar!");
+                scanner.nextLine();
+
+            }
+
+            //Deposito Poupanca
+
+            if(optionX=="Deposito Poupanca" && whichmenu=="Menu"){
+                //pegar poupanca
+                Conta contaPoupanca=instanc.getConta(clienteAtual.getID(),IDBanco,"Conta Poupanca");
+                System.out.print("\033[H\033[2J");
+                System.out.println("Deposito Poupanca\n");
+                System.out.println("Digite o valor do deposito:");
+                String valor = scanner.nextLine();
+
+                clienteAtual.Depositar(instanc.model,contaPoupanca,Double.parseDouble(valor));
+
+                System.out.println("Pressione enter para voltar!");
+            }
+
+            //Saldo Poupanca
+
+            if(optionX=="Saldo Poupanca" && whichmenu=="Menu"){
+                //pegar poupanca
+                Conta contaPoupanca=instanc.getConta(clienteAtual.getID(),IDBanco,"Conta Poupanca");
+                System.out.print("\033[H\033[2J");
+                System.out.println("Saldo Poupanca\n");
+                System.out.println("Saldo: "+contaPoupanca.getSaldo());
+                System.out.println("Pressione enter para voltar!");
+                scanner.nextLine();
+                
+
+            }
+
+
+
 
 
 

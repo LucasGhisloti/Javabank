@@ -6,6 +6,7 @@ package com.mycompany.javabank;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -19,6 +20,7 @@ public class Cliente {
     private String documento;
     private int senhaLogin;
     private int senhaTransac;
+    
 
 
     Cliente(String nome, String documento, int senhaLogin, int senhaTransac){
@@ -64,19 +66,56 @@ public class Cliente {
         return this.senhaTransac;
     }
 
-    public boolean Sacar(Conta conta, double valor){
+    public boolean Sacar(Models model,Conta conta, double valor) throws SaldoInsuficienteException, limiteSaqueException{
         double novoVal = conta.getSaldo() - valor;
-        if (valor > conta.getLimiteSaque()) return false;
-        if (novoVal < 0) return false;
-        //TODO: Registrar nas transações
+        if (valor > conta.getLimiteSaque()) {throw new limiteSaqueException("Limite de saque excedido");}
+        if (novoVal < 0) {
+            throw new SaldoInsuficienteException("Saldo insuficiente");
+            
+        }
         
+        LocalDateTime data_atual =  LocalDateTime.now();
+        // data formato "yyyy-MM-dd"
+        String dataString = data_atual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        //hora formato "HH:mm:ss"
+        String horaString = data_atual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        model.listaTransacao.add(new Transacao(dataString,horaString,this.ID,this.ID, valor, "Saque"));
+
         conta.setSaldo(conta.getSaldo() - valor);
         return true;
     }
 
-    public void Depositar(Conta conta, double valor){
+    public void Depositar(Models model,Conta conta, double valor){
         double novoVal = conta.getSaldo() + valor;
         conta.setSaldo(novoVal);
-        //TODO: Registrar nas transações
+        LocalDateTime data_atual =  LocalDateTime.now();
+        // data formato "yyyy-MM-dd"
+        String dataString = data_atual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        //hora formato "HH:mm:ss"
+        String horaString = data_atual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        model.listaTransacao.add(new Transacao(dataString,horaString,this.ID,this.ID, valor, "Deposito"));
+    }
+
+    public boolean Transferencia(Models model,Conta contaOrigem, Conta contaDestino, double valor){
+        
+        double novoVal = contaOrigem.getSaldo() - valor;
+        if (novoVal < 0) return false;
+        contaOrigem.setSaldo(contaOrigem.getSaldo() - valor);
+        contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+        LocalDateTime data_atual =  LocalDateTime.now();
+        
+        // data formato "yyyy-MM-dd"
+        String dataString = data_atual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        //hora formato "HH:mm:ss"
+        String horaString = data_atual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        model.listaTransacao.add(new Transacao(dataString,horaString,this.ID,contaDestino.ID, valor, "Transferencia"));
+
+        return true;
     }
 }
