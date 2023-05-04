@@ -5,7 +5,6 @@
 
 package com.mycompany.javabank;
 
-import java.io.Console;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -45,7 +44,6 @@ public class Javabank {
         Cliente clienteAtual = new Cliente("", "", 0, 0);
         int IDBanco = instanc.getBancobyName("JavaBank").getID();
         Conta contaAtual = new Conta(0, 1, "", 0, 0);
-        Console console = System.console();
 
         while (optionX != "Sair") {
             login.setMenuIndexatual(0);
@@ -69,7 +67,7 @@ public class Javabank {
                 System.out.println("Digite o numero do cliente:");
                 String IDCliente = scanner.nextLine();
                 System.out.println("Digite a senha:");
-                String senha = new String(console.readPassword());
+                String senha = scanner.nextLine();
 
                 // System.out.println("ID Banco: ");
                 // IDBanco = scanner.nextLine();
@@ -123,9 +121,9 @@ public class Javabank {
                 do {
                     System.out.print("\033[H\033[2J");
                     System.out.println("Digite a senha de Login:");
-                    senha = new String (console.readPassword());
+                    senha = scanner.nextLine();
                     System.out.println("Confirme sua senha:");
-                    String senha2 = new String (console.readPassword());
+                    String senha2 = scanner.nextLine();
                     if(senha.equals(senha2)){
                         cliente.setSenhaLogin(Integer.parseInt(senha));
                         condition = true;
@@ -142,9 +140,9 @@ public class Javabank {
                 do {
                     System.out.print("\033[H\033[2J");
                     System.out.println("Digite a senha de Transação:");
-                    senha = new String (console.readPassword());
+                    senha = scanner.nextLine();
                     System.out.println("Confirme sua senha:");
-                    String senha2 = new String (console.readPassword());
+                    String senha2 = scanner.nextLine();
                     if(senha.equals(senha2)){
                         cliente.setSenhaLogin(Integer.parseInt(senha));
                         condition = true;
