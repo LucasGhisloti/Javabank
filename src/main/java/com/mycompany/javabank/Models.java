@@ -7,10 +7,7 @@ package com.mycompany.javabank;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-/**
- *
- * @author Lucas Ghisloti
- */
+
 public class Models {
     ArrayList<Cliente> listaCliente = new ArrayList<>();
     ArrayList<Conta> listaConta = new ArrayList<>();

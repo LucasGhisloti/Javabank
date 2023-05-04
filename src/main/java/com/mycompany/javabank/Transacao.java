@@ -4,10 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author Guilherme Jardim
- */
+
 public class Transacao {
     public LocalDate data;
     public LocalTime hora;

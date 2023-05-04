@@ -9,10 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author Lucas Ghisloti
- */
+
 public class Cliente {
     public static int idcount = 1;
     public int ID;

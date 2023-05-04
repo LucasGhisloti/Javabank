@@ -17,11 +17,7 @@ import java.util.Scanner;
 
 import javax.swing.text.DateFormatter;
 
-/**
- *
- * @author Lucas Ghisloti
- * @author Leonardo Bezerra
- */
+
 
  class SaldoInsuficienteException extends Exception{
     public SaldoInsuficienteException(String message){

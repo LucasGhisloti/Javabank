@@ -8,11 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- *
- * @author Lucas Ghisloti
- * 
- */
+
 public class Conta {
     public int clienteID;
     public int bancoID;

@@ -7,11 +7,7 @@ package com.mycompany.javabank;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Lucas Ghisloti
- * 
- */
+
 public class Instancias {
     public Models model;
     Instancias(){
