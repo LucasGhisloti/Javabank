@@ -55,8 +55,9 @@ public class Javabank {
             } else if (whichmenu == "Menu") {
                 menu.setMenuIndexatual(0);
 
-                optionX = menu.load(clienteAtual.getNome() + "[ID: " + clienteAtual.getID() + "]"
-                        + "------Saldo atual: " + contaAtual.getSaldo() + "\n\n", "\n[Down:s " + "Up:w " + "Select:x]");
+                optionX = menu.load(clienteAtual.getNome() + " [ID: " + clienteAtual.getID() + "]"
+                            + "\nSaldo atual: " + contaAtual.getSaldo() + "\n", 
+                        footer);
             }
             // Menu Inicial -----------------------------------------------------
 
@@ -64,10 +65,10 @@ public class Javabank {
             if (optionX == "Login" && whichmenu == "Login") {
                 // limpar tela
                 System.out.print("\033[H\033[2J");
-                System.out.println("Login\n");
-                System.out.println("Digite o numero do cliente:");
+                System.out.println("Login");
+                System.out.print("Numero do cliente: ");
                 String IDCliente = scanner.nextLine();
-                System.out.println("Digite a senha:");
+                System.out.print("Senha: ");
                 String senha = scanner.nextLine();
 
                 // System.out.println("ID Banco: ");
@@ -109,10 +110,10 @@ public class Javabank {
                 Conta conta = new Conta(0, 1, "", 0, 0);
                 // limpar tela
                 System.out.print("\033[H\033[2J");
-                System.out.println("Nova Conta:\n");
-                System.out.println("Digite o seu nome:");
+                System.out.println("Nova Conta");
+                System.out.print("Seu nome: ");
                 cliente.setNome(scanner.nextLine());
-                System.out.println("Digite o seu documento:");
+                System.out.print("Seu documento (CPF/CNPJ): ");
                 cliente.setDocumento(scanner.nextLine());
                 
                 //limpar tela
@@ -121,9 +122,9 @@ public class Javabank {
                 String senha = "";
                 do {
                     System.out.print("\033[H\033[2J");
-                    System.out.println("Digite a senha de Login:");
+                    System.out.print("Senha de login: ");
                     senha = scanner.nextLine();
-                    System.out.println("Confirme sua senha:");
+                    System.out.print("Confirme sua senha: ");
                     String senha2 = scanner.nextLine();
                     if(senha.equals(senha2)){
                         cliente.setSenhaLogin(Integer.parseInt(senha));
@@ -140,15 +141,15 @@ public class Javabank {
                 condition = false;
                 do {
                     System.out.print("\033[H\033[2J");
-                    System.out.println("Digite a senha de Transação:");
+                    System.out.print("Senha de transação: ");
                     senha = scanner.nextLine();
-                    System.out.println("Confirme sua senha:");
+                    System.out.print("Confirme sua senha: ");
                     String senha2 = scanner.nextLine();
                     if(senha.equals(senha2)){
                         cliente.setSenhaLogin(Integer.parseInt(senha));
                         condition = true;
                     }else{
-                        System.out.println("Senhas não conferem!\n Pressione enter para continuar");
+                        System.out.println("Senhas não conferem!\nPressione enter para continuar.");
                         scanner.nextLine();
                     }
                     
@@ -169,7 +170,7 @@ public class Javabank {
 
                 //pergunta se quer conta poupanca
                 System.out.print("\033[H\033[2J");
-                System.out.println("Deseja criar uma conta poupanca? [s/n]");
+                System.out.print("Deseja criar uma conta poupanca? [s/n]: ");
                 String option = scanner.nextLine();
                 
 
@@ -194,10 +195,11 @@ public class Javabank {
                     instanc.getModel().listaConta.add(contaPoupanca);
                 }
 
-                System.out.println("Conta criada com sucesso!\nGAVE SEUS DADOS E NÃO PERCA!\nSeu ID é ["+cliente.getID()+"]\n Pressione enter para continuar");
+                System.out.println("\nConta criada com sucesso!\n\n"
+                        + "GRAVE SEUS DADOS E NÃO PERCA!\n"
+                        + "- Seu ID é ["+cliente.getID()+"].\n\n"
+                        + "Pressione enter para continuar...");
                 scanner.nextLine();
-
-
             }
 
             // Menu --------------------------------------------------------------
@@ -224,11 +226,11 @@ public class Javabank {
             // Saque
             if (optionX == "Saque" && whichmenu == "Menu") {
                 System.out.print("\033[H\033[2J");
-                System.out.println("Saque\n");
-                System.out.println("Digite o valor do saque:");
+                System.out.println("Saque");
+                System.out.print("Valor do saque: ");
                 String valor = scanner.nextLine();
                 
-                System.out.println("Insira a senha de transacao:");
+                System.out.print("Senha de transacao: ");
 
                 boolean condition = false;
                 do {
@@ -236,13 +238,13 @@ public class Javabank {
                     if(senha == clienteAtual.getSenhaTransac()){
                         condition = true;
                     }else{
-                        System.out.println("Senha incorreta! Tente novamente.");
+                        System.out.print("Senha incorreta!\nTente novamente: ");
                     }
                 } while (!condition);
 
                 try {
                     clienteAtual.Sacar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
-                    System.out.println("Saque feito com sucesso!\n");
+                    System.out.println("\nSaque feito com sucesso!");
                 } catch (SaldoInsuficienteException e) {
                     System.out.println(e.getMessage());
                 } catch (limiteSaqueException e) {
@@ -256,22 +258,22 @@ public class Javabank {
             // Deposito
             if (optionX == "Deposito" && whichmenu == "Menu") {
                 System.out.print("\033[H\033[2J");
-                System.out.println("Deposito\n");
-                System.out.println("Digite o valor do deposito:");
+                System.out.println("Deposito");
+                System.out.print("Digite o valor do deposito: ");
                 String valor = scanner.nextLine();
 
                 clienteAtual.Depositar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
-                System.out.println("Deposito feito com sucesso!\n");
+                System.out.println("Deposito feito com sucesso!");
 
             }
 
             // Transferencia
             if (optionX == "Transferencia" && whichmenu == "Menu") {
                 System.out.print("\033[H\033[2J");
-                System.out.println("Transferencia\n");
-                System.out.println("Digite o valor da transferencia:");
+                System.out.println("Transferencia");
+                System.out.print("Valor a transferir: ");
                 String valor = scanner.nextLine();
-                System.out.println("Digite o ID do cliente que recebera a transferencia:");
+                System.out.print("ID do cliente que recebera a transferencia: ");
                 String IDCliente = scanner.nextLine();
 
                 String[] tipodecontas = { "Conta Corrente" };
@@ -286,7 +288,7 @@ public class Javabank {
                 selecaoConta.addMenuItem("Voltar");
 
                 selecaoConta.setMenuIndexatual(0);
-                String optionConta = selecaoConta.load("Selecione o tipo de conta que recebera a transferencia: \n\n",
+                String optionConta = selecaoConta.load("Selecione o tipo de conta que recebera a transferencia:\n",
                         footer);
 
                 if (optionConta.equals("Voltar")) {
@@ -296,19 +298,19 @@ public class Javabank {
                 Cliente clienteDestino = instanc.getCliente(Integer.parseInt(IDCliente));
                 Conta contaDestino = instanc.getConta(clienteDestino.getID(), IDBanco, optionConta);
                 
-                System.out.println("Insira a senha de transacao:");
+                System.out.print("Senha de transacao: ");
                 boolean condition = false;
                 do {
                     int senha = Integer.parseInt(scanner.nextLine());
                     if(senha == clienteAtual.getSenhaTransac()){
                         condition = true;
                     }else{
-                        System.out.println("Senha incorreta! Tente novamente.");
+                        System.out.print("Senha incorreta!\nTente novamente: ");
                     }
                 } while (!condition);
 
                 clienteAtual.Transferencia(instanc.getModel(), contaAtual, contaDestino, Double.parseDouble(valor));
-                System.out.println("Transferencia feita com sucesso!\n");
+                System.out.println("Transferencia feita com sucesso!");
             }
 
             // Saque Poupanca
@@ -318,10 +320,10 @@ public class Javabank {
 
                 System.out.print("\033[H\033[2J");
                 System.out.println("Saque Poupanca\n");
-                System.out.println("Digite o valor do saque:");
+                System.out.print("Valor do saque: ");
                 String valor = scanner.nextLine();
                 
-                System.out.println("Insira a senha de transacao:");
+                System.out.print("Senha de transacao: ");
 
                 boolean condition = false;
                 do {
@@ -329,13 +331,13 @@ public class Javabank {
                     if(senha == clienteAtual.getSenhaTransac()){
                         condition = true;
                     }else{
-                        System.out.println("Senha incorreta! Tente novamente.");
+                        System.out.print("Senha incorreta!\nTente novamente: ");
                     }
                 } while (!condition);
 
                 try {
                     clienteAtual.Sacar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
-                    System.out.println("Saque feito com sucesso!\n");
+                    System.out.println("Saque feito com sucesso!");
                 } catch (SaldoInsuficienteException e) {
                     System.out.println(e.getMessage());
                 } catch (limiteSaqueException e) {
@@ -352,8 +354,8 @@ public class Javabank {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 System.out.print("\033[H\033[2J");
-                System.out.println("Deposito Poupanca\n");
-                System.out.println("Digite o valor do deposito:");
+                System.out.println("Deposito em Poupanca");
+                System.out.println("Valor do deposito: ");
                 String valor = scanner.nextLine();
 
                 clienteAtual.Depositar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
@@ -366,7 +368,7 @@ public class Javabank {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 System.out.print("\033[H\033[2J");
-                System.out.println("Saldo Poupanca\n");
+                System.out.println("Saldo Poupanca");
                 System.out.println("Saldo: " + contaPoupanca.getSaldo());
                 System.out.println("Pressione enter para voltar!");
                 scanner.nextLine();
