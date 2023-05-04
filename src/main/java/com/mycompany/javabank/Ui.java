@@ -120,7 +120,7 @@ public class Ui {
              if (i == this.menuIndexatual) {
                  System.out.println(this.menuSelector + this.menuItems[i]);
              } else {
-                 System.out.println("   " + this.menuItems[i]);
+                 System.out.println("  " + this.menuItems[i]);
              }
          }
      }
