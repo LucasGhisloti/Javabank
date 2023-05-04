@@ -44,7 +44,7 @@ public class Javabank {
         Cliente clienteAtual = new Cliente("", "", 0, 0);
         int IDBanco = instanc.getBancobyName("JavaBank").getID();
         Conta contaAtual = new Conta(0, 1, "", 0, 0);
-        final String footer = "[Down:s Up:w Select:x]: ";
+        final String footer = "[" + menu.getFooter() + "]: ";
 
         while (optionX != "Sair") {
             login.setMenuIndexatual(0);
