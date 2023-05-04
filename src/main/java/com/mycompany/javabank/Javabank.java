@@ -226,6 +226,18 @@ public class Javabank {
                 System.out.println("Saque\n");
                 System.out.println("Digite o valor do saque:");
                 String valor = scanner.nextLine();
+                
+                System.out.println("Insira a senha de transacao:");
+
+                boolean condition = false;
+                do {
+                    int senha = Integer.parseInt(scanner.nextLine());
+                    if(senha == clienteAtual.getSenhaTransac()){
+                        condition = true;
+                    }else{
+                        System.out.println("Senha incorreta! Tente novamente.");
+                    }
+                } while (!condition);
 
                 try {
                     clienteAtual.Sacar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
