@@ -64,9 +64,10 @@ public class Javabank {
                 
                 optionX= menu.load(clienteAtual.getNome()+"[ID: "+clienteAtual.getID()+"]"+"------Saldo atual: "+contaAtual.getSaldo()+"\n\n","\n[Down:s "+"Up:w "+"Select:x]");
             }
+            //Menu Inicial -----------------------------------------------------
             
-
-            //LOGIN
+            
+            //Login 
             if(optionX=="Login" && whichmenu=="Login"){
                 //limpar tela
                 System.out.print("\033[H\033[2J");
@@ -107,11 +108,23 @@ public class Javabank {
                     whichmenu="Menu";
                 }
                 
+                
+            }
+            
+            //Nova Conta
+            if(optionX=="Nova Conta" && whichmenu=="Login"){
+                
+                Cliente cliente = new Cliente("","",0,0);
+                Conta conta = new Conta(0,1,"",0,0);
+                //limpar tela
+                System.out.print("\033[H\033[2J");
+                System.out.println("CADASTRO DE CLIENTE:\n");
+
 
             }
 
-            //Menu
             
+            //Menu --------------------------------------------------------------
             //Extrato
             if(optionX=="Extrato" && whichmenu=="Menu"){
 
@@ -133,6 +146,7 @@ public class Javabank {
                 scanner.nextLine();
                 
             }
+            
             //Saque
             if(optionX=="Saque" && whichmenu=="Menu"){
                 System.out.print("\033[H\033[2J");
@@ -153,6 +167,7 @@ public class Javabank {
                 System.out.println("Pressione enter para voltar!");
                 scanner.nextLine();
             }
+            
             //Deposito
             if(optionX=="Deposito" && whichmenu=="Menu"){
                 System.out.print("\033[H\033[2J");
@@ -228,7 +243,6 @@ public class Javabank {
             }
 
             //Deposito Poupanca
-
             if(optionX=="Deposito Poupanca" && whichmenu=="Menu"){
                 //pegar poupanca
                 Conta contaPoupanca=instanc.getConta(clienteAtual.getID(),IDBanco,"Conta Poupanca");
@@ -243,7 +257,6 @@ public class Javabank {
             }
 
             //Saldo Poupanca
-
             if(optionX=="Saldo Poupanca" && whichmenu=="Menu"){
                 //pegar poupanca
                 Conta contaPoupanca=instanc.getConta(clienteAtual.getID(),IDBanco,"Conta Poupanca");

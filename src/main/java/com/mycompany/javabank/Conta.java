@@ -11,6 +11,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Lucas Ghisloti
+ * 
  */
 public class Conta {
     public int clienteID;
