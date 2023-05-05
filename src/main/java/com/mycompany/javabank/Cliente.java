@@ -78,7 +78,7 @@ public class Cliente {
         //hora formato "HH:mm:ss"
         String horaString = data_atual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        model.listaTransacao.add(new Transacao(dataString,horaString,this.ID,this.ID, valor, "Saque"));
+        model.listaTransacao.add(new Transacao(dataString,horaString,conta.getID(),conta.getID(), valor, "Saque"));
 
         conta.setSaldo(conta.getSaldo() - valor);
         return true;
@@ -94,7 +94,7 @@ public class Cliente {
         //hora formato "HH:mm:ss"
         String horaString = data_atual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        model.listaTransacao.add(new Transacao(dataString,horaString,this.ID,this.ID, valor, "Deposito"));
+        model.listaTransacao.add(new Transacao(dataString,horaString,conta.getID(),conta.getID(), valor, "Deposito"));
     }
 
     public boolean Transferencia(Models model,Conta contaOrigem, Conta contaDestino, double valor){
@@ -111,7 +111,7 @@ public class Cliente {
         //hora formato "HH:mm:ss"
         String horaString = data_atual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        model.listaTransacao.add(new Transacao(dataString,horaString,this.ID,contaDestino.getID(), valor, "Transferencia"));
+        model.listaTransacao.add(new Transacao(dataString,horaString,contaOrigem.getID(),contaDestino.getID(), valor, "Transferencia"));
 
         return true;
     }
