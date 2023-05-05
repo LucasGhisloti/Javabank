@@ -72,15 +72,19 @@ public class Transacao {
     }
     
     public String toString(Models model){
-        String texto;
+        String texto = "";
 
-        texto = "Cliente: "+model.getNomeClienteFromContaID(this.getDe())+
-                ", Banco: "+model.getNomeBancoFromClienteBancoID(this.getDe())+" -> "+
-                "Cliente: "+model.getNomeClienteFromContaID(this.getPara())+
-                ", Banco: "+model.getNomeBancoFromClienteBancoID(this.getPara())+"\n"+
-                this.getData().toString()+" as "+this.getHora()+"\n";
+        if (this.getDe() != this.getPara()) {
+            texto += "Clientes: "+model.getNomeClienteFromContaID(this.getDe())+
+                " ["+model.getNomeBancoFromClienteBancoID(this.getDe())+"] -> "+
+                model.getNomeClienteFromContaID(this.getPara())+
+                " ["+model.getNomeBancoFromClienteBancoID(this.getPara())+"]\n";
+        }
+
+        texto += this.getData().toString()+" as "+this.getHora()+"\n";
         texto += "Tipo: "+this.getTipo()+"\n";
         texto += "Valor: "+this.getQuantia();
+
         return texto;
     }
 }

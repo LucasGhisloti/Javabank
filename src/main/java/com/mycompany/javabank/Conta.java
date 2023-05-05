@@ -80,13 +80,13 @@ public class Conta {
                 LocalDate.parse(dtfim, formatter)
         );
 
-        System.out.println(this.tipo+"\n");
+        System.out.println(this.tipo+"\n-----");
 
         if(extrato.isEmpty()){
             System.out.println("Nao ha transacoes nesse periodo\n");
         }else{
             extrato.forEach((t) -> {
-                System.out.println(t.toString(model) + "\n");
+                System.out.println(t.toString(model) + "\n----");
             });
         }
 

@@ -7,12 +7,15 @@ public class Ui {
      private String menuSelector;
      private int countItems;
     
-     
+     final private String upChar = "w";
+     final private String downChar = "s";
+     final private String selectChar = "x";
+
      // Construtor
      public Ui() {
          this.menuItems = new String[0];
          this.menuIndexatual = 0;
-         this.menuSelector = "->";
+         this.menuSelector = "> ";
          this.countItems = 0;
          
      }
@@ -20,7 +23,7 @@ public class Ui {
      public Ui(String[] menuItems) {
          this.menuItems = menuItems;
          this.menuIndexatual = 0;
-         this.menuSelector = "->";
+         this.menuSelector = "> ";
          this.countItems = menuItems.length;
      }
 
@@ -41,11 +44,11 @@ public class Ui {
             System.out.print(footer);
             line =  scanner.nextLine();
 
-            if(line.equals("w")){
+            if(line.equals(this.upChar)){
                 this.upMenu();
-            }else if(line.equals("s")){
+            }else if(line.equals(this.downChar)){
                 this.downMenu();
-            }else if(line.equals("x")){
+            }else if(line.equals(this.selectChar)){
                 option = this.getMenuItems()[this.getMenuIndexatual()];
                 
             }
@@ -56,7 +59,11 @@ public class Ui {
         return option;
      }
 
-     
+     public String getFooter(){
+         return "Down:" + this.downChar
+                 + " Up:" + this.upChar
+                 + " Select:" + this.selectChar;
+     }
 
      public String load(){
         String line="";
@@ -71,11 +78,11 @@ public class Ui {
             //ler tecla do teclado
             line =  scanner.nextLine();
 
-            if(line.equals("w")){
+            if(line.equals(this.upChar)){
                 this.upMenu();
-            }else if(line.equals("s")){
+            }else if(line.equals(this.downChar)){
                 this.downMenu();
-            }else if(line.equals("x")){
+            }else if(line.equals(this.selectChar)){
                 option = this.getMenuItems()[this.getMenuIndexatual()];
                 
             }
@@ -120,7 +127,7 @@ public class Ui {
              if (i == this.menuIndexatual) {
                  System.out.println(this.menuSelector + this.menuItems[i]);
              } else {
-                 System.out.println("   " + this.menuItems[i]);
+                 System.out.println("  " + this.menuItems[i]);
              }
          }
      }
