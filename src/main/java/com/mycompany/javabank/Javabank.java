@@ -70,7 +70,6 @@ public class Javabank {
             // Login
             if ("Login".equals(optionX) && "Login".equals(whichmenu)) {
                 // limpar tela
-                System.out.print("\033[H\033[2J");
                 imprimeTitulo("Login");
                 System.out.print("Numero do cliente: ");
                 String IDCliente = scanner.nextLine();
@@ -262,10 +261,6 @@ public class Javabank {
                 imprimeTitulo("Deposito");
                 System.out.print("Digite o valor do deposito: ");
                 
-                System.out.print("\033[H\033[2J");
-                System.out.println("Deposito\n");
-                System.out.println("Digite o valor do deposito:");
-
                 String valor = scanner.nextLine();
 
                 clienteAtual.Depositar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
