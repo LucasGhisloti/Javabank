@@ -262,7 +262,7 @@ public class Javabank {
 
             if ("Deposito".equals(optionX) && "Menu".equals(whichmenu)) {
                 imprimeTitulo("Deposito");
-                System.out.print("Digite o valor do deposito: ");
+                System.out.print("Valor do deposito: ");
                 
                 String valor = scanner.nextLine();
 
@@ -323,7 +323,7 @@ public class Javabank {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
 
-                imprimeTitulo("Saque Poupanca\n");
+                imprimeTitulo("Saque Poupanca");
                 System.out.print("Valor do saque: ");
                 String valor = scanner.nextLine();
                 
@@ -358,7 +358,7 @@ public class Javabank {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 imprimeTitulo("Deposito em Poupanca");
-                System.out.println("Valor do deposito: ");
+                System.out.print("Valor do deposito: ");
                 String valor = scanner.nextLine();
 
                 clienteAtual.Depositar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
