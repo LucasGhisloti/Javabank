@@ -230,6 +230,7 @@ public class Javabank {
 
             if ("Saque".equals(optionX) && "Menu".equals(whichmenu)) {
                 imprimeTitulo("Saque");
+                System.out.println("Voce pode sacar ate "+ contaAtual.getLimiteSaque());
                 System.out.print("Valor do saque: ");
                 String valor = scanner.nextLine();
                 
@@ -324,6 +325,7 @@ public class Javabank {
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
 
                 imprimeTitulo("Saque Poupanca");
+                System.out.println("Voce pode sacar ate "+ contaPoupanca.getLimiteSaque());
                 System.out.print("Valor do saque: ");
                 String valor = scanner.nextLine();
                 
