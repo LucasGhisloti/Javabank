@@ -51,13 +51,13 @@ public class Javabank {
         Conta contaAtual = new Conta(0, 1, "", 0, 0);
         final String footer = "[" + menu.getFooter() + "]: ";
 
-        while (optionX != "Sair") {
+        while (!"Sair".equals(optionX)) {
             login.setMenuIndexatual(0);
-            if (whichmenu == "Login") {
+            if ("Login".equals(whichmenu)) {
                 login.setMenuIndexatual(0);
 
                 optionX = login.load("\nJavaBank: seja bem-vindo!\n", footer);
-            } else if (whichmenu == "Menu") {
+            } else if ("Menu".equals(whichmenu)) {
                 menu.setMenuIndexatual(0);
 
                 optionX = menu.load(
@@ -68,7 +68,7 @@ public class Javabank {
             // Menu Inicial -----------------------------------------------------
 
             // Login
-            if (optionX == "Login" && whichmenu == "Login") {
+            if ("Login".equals(optionX) && "Login".equals(whichmenu)) {
                 // limpar tela
                 System.out.print("\033[H\033[2J");
                 imprimeTitulo("Login");
@@ -95,7 +95,9 @@ public class Javabank {
                     menu.addMenuItem("Saldo Poupanca");
 
                 }
-                if ("Sair" != new ArrayList<>(Arrays.asList(menu.getMenuItems())).get(menu.getMenuItems().length - 1)) {
+                if (!"Sair".equals(
+                        new ArrayList<>(Arrays.asList(
+                                menu.getMenuItems())).get(menu.getMenuItems().length - 1))) {
                     menu.addMenuItem("Sair");
                 }
 
@@ -110,7 +112,7 @@ public class Javabank {
             }
 
             // Nova Conta
-            if (optionX == "Nova Conta" && whichmenu == "Login") {
+            if ("Nova Conta".equals(optionX) && "Login".equals(whichmenu)) {
 
                 Cliente cliente = new Cliente("", "", 0, 0);
                 Conta conta = new Conta(0, 1, "", 0, 0);
@@ -204,7 +206,7 @@ public class Javabank {
 
             // Menu --------------------------------------------------------------
             // Extrato
-            if (optionX == "Extrato" && whichmenu == "Menu") {
+            if ("Extrato".equals(optionX) && "Menu".equals(whichmenu)) {
 
                 // transacoes
                 imprimeTitulo("Extrato");
@@ -223,7 +225,8 @@ public class Javabank {
             }
 
             // Saque
-            if (optionX == "Saque" && whichmenu == "Menu") {
+
+            if ("Saque".equals(optionX) && "Menu".equals(whichmenu)) {
                 imprimeTitulo("Saque");
                 System.out.print("Valor do saque: ");
                 String valor = scanner.nextLine();
@@ -254,9 +257,15 @@ public class Javabank {
             }
 
             // Deposito
-            if (optionX == "Deposito" && whichmenu == "Menu") {
+
+            if ("Deposito".equals(optionX) && "Menu".equals(whichmenu)) {
                 imprimeTitulo("Deposito");
                 System.out.print("Digite o valor do deposito: ");
+                
+                System.out.print("\033[H\033[2J");
+                System.out.println("Deposito\n");
+                System.out.println("Digite o valor do deposito:");
+
                 String valor = scanner.nextLine();
 
                 clienteAtual.Depositar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
@@ -265,9 +274,11 @@ public class Javabank {
             }
 
             // Transferencia
-            if (optionX == "Transferencia" && whichmenu == "Menu") {
+
+            if ("Transferencia".equals(optionX) && "Menu".equals(whichmenu)) {
                 imprimeTitulo("Transferencia");
                 System.out.print("Valor a transferir: ");
+
                 String valor = scanner.nextLine();
                 System.out.print("ID do cliente que recebera a transferencia: ");
                 String IDCliente = scanner.nextLine();
@@ -310,7 +321,7 @@ public class Javabank {
             }
 
             // Saque Poupanca
-            if (optionX == "Saque Poupanca" && whichmenu == "Menu") {
+            if ("Saque Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
 
@@ -345,7 +356,7 @@ public class Javabank {
             }
 
             // Deposito Poupanca
-            if (optionX == "Deposito Poupanca" && whichmenu == "Menu") {
+            if ("Deposito Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 imprimeTitulo("Deposito em Poupanca");
@@ -358,7 +369,7 @@ public class Javabank {
             }
 
             // Saldo Poupanca
-            if (optionX == "Saldo Poupanca" && whichmenu == "Menu") {
+            if ("Saldo Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 imprimeTitulo("Saldo Poupanca");

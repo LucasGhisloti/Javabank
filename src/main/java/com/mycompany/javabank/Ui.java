@@ -31,7 +31,7 @@ public class Ui {
      public String load(String header,String footer){
         String line="";
         String option="";
-        while(option==""){
+        while("".equals(option)){
             
             Scanner scanner = new Scanner(System.in);
             //limpar tela
@@ -68,7 +68,7 @@ public class Ui {
      public String load(){
         String line="";
         String option="";
-        while(option==""){
+        while("".equals(option)){
             Scanner scanner = new Scanner(System.in);
             //limpar tela
             System.out.print("\033[H\033[2J");
