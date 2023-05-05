@@ -283,6 +283,9 @@ public class Javabank {
                 String valor = scanner.nextLine();
                 System.out.print("ID do cliente que recebera a transferencia: ");
                 String IDCliente = scanner.nextLine();
+                Cliente clienteDestino = instanc.getCliente(Integer.parseInt(IDCliente));
+
+                System.out.println("Voce esta transferindo para: " + clienteDestino.getNome());
 
                 String[] tipodecontas = { "Conta Corrente" };
 
@@ -303,7 +306,6 @@ public class Javabank {
                     continue;
                 }
 
-                Cliente clienteDestino = instanc.getCliente(Integer.parseInt(IDCliente));
                 Conta contaDestino = instanc.getConta(clienteDestino.getID(), IDBanco, optionConta);
                 
                 System.out.print("Senha de transacao: ");
