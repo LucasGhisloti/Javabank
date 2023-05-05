@@ -109,7 +109,7 @@ public class Instancias {
     public Banco getBancobyName(String nome){
         
         for(int i = 0; i< model.listaBanco.size(); i++){
-            if(model.listaBanco.get(i).getNome()== nome){
+            if(model.listaBanco.get(i).getNome().equals(nome)){
                 return model.listaBanco.get(i);
             }
         }

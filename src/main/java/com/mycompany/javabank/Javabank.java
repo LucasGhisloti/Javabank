@@ -45,13 +45,13 @@ public class Javabank {
         int IDBanco = instanc.getBancobyName("JavaBank").getID();
         Conta contaAtual = new Conta(0, 1, "", 0, 0);
 
-        while (optionX != "Sair") {
+        while (!"Sair".equals(optionX)) {
             login.setMenuIndexatual(0);
-            if (whichmenu == "Login") {
+            if ("Login".equals(whichmenu)) {
                 login.setMenuIndexatual(0);
 
                 optionX = login.load(" SEJA BEM VINDO ! #################\n", "[Down:s " + "Up:w " + "Select:x]");
-            } else if (whichmenu == "Menu") {
+            } else if ("Menu".equals(whichmenu)) {
                 menu.setMenuIndexatual(0);
 
                 optionX = menu.load(clienteAtual.getNome() + "[ID: " + clienteAtual.getID() + "]"
@@ -60,7 +60,7 @@ public class Javabank {
             // Menu Inicial -----------------------------------------------------
 
             // Login
-            if (optionX == "Login" && whichmenu == "Login") {
+            if ("Login".equals(optionX) && "Login".equals(whichmenu)) {
                 // limpar tela
                 System.out.print("\033[H\033[2J");
                 System.out.println("Login\n");
@@ -87,7 +87,9 @@ public class Javabank {
                     menu.addMenuItem("Saldo Poupanca");
 
                 }
-                if ("Sair" != new ArrayList<>(Arrays.asList(menu.getMenuItems())).get(menu.getMenuItems().length - 1)) {
+                if (!"Sair".equals(
+                        new ArrayList<>(Arrays.asList(
+                                menu.getMenuItems())).get(menu.getMenuItems().length - 1))) {
                     menu.addMenuItem("Sair");
                 }
 
@@ -102,7 +104,7 @@ public class Javabank {
             }
 
             // Nova Conta
-            if (optionX == "Nova Conta" && whichmenu == "Login") {
+            if ("Nova Conta".equals(optionX) && "Login".equals(whichmenu)) {
 
                 Cliente cliente = new Cliente("", "", 0, 0);
                 Conta conta = new Conta(0, 1, "", 0, 0);
@@ -201,7 +203,7 @@ public class Javabank {
 
             // Menu --------------------------------------------------------------
             // Extrato
-            if (optionX == "Extrato" && whichmenu == "Menu") {
+            if ("Extrato".equals(optionX) && "Menu".equals(whichmenu)) {
 
                 // transacoes
                 System.out.print("\033[H\033[2J");
@@ -221,7 +223,7 @@ public class Javabank {
             }
 
             // Saque
-            if (optionX == "Saque" && whichmenu == "Menu") {
+            if ("Saque".equals(optionX) && "Menu".equals(whichmenu)) {
                 System.out.print("\033[H\033[2J");
                 System.out.println("Saque\n");
                 System.out.println("Digite o valor do saque:");
@@ -253,7 +255,7 @@ public class Javabank {
             }
 
             // Deposito
-            if (optionX == "Deposito" && whichmenu == "Menu") {
+            if ("Deposito".equals(optionX) && "Menu".equals(whichmenu)) {
                 System.out.print("\033[H\033[2J");
                 System.out.println("Deposito\n");
                 System.out.println("Digite o valor do deposito:");
@@ -265,7 +267,7 @@ public class Javabank {
             }
 
             // Transferencia
-            if (optionX == "Transferencia" && whichmenu == "Menu") {
+            if ("Transferencia".equals(optionX) && "Menu".equals(whichmenu)) {
                 System.out.print("\033[H\033[2J");
                 System.out.println("Transferencia\n");
                 System.out.println("Digite o valor da transferencia:");
@@ -311,7 +313,7 @@ public class Javabank {
             }
 
             // Saque Poupanca
-            if (optionX == "Saque Poupanca" && whichmenu == "Menu") {
+            if ("Saque Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
 
@@ -347,7 +349,7 @@ public class Javabank {
             }
 
             // Deposito Poupanca
-            if (optionX == "Deposito Poupanca" && whichmenu == "Menu") {
+            if ("Deposito Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 System.out.print("\033[H\033[2J");
@@ -361,7 +363,7 @@ public class Javabank {
             }
 
             // Saldo Poupanca
-            if (optionX == "Saldo Poupanca" && whichmenu == "Menu") {
+            if ("Saldo Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 System.out.print("\033[H\033[2J");
