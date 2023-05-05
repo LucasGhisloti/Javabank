@@ -6,6 +6,8 @@ package com.mycompany.javabank;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Models {
@@ -39,5 +41,20 @@ public class Models {
 
     public int getIDdeNovoCliente(){
         return this.listaCliente.size()+1;
+    }
+    
+    public int contaDepositoHoje(int id){
+        int countDep = 0;
+
+        for(int i = this.listaTransacao.size()-1; i>0; i--){
+            if(this.listaTransacao.get(i).getData().equals(LocalDate.now())){
+                if(this.listaTransacao.get(i).getDe() == id &&
+                   this.listaTransacao.get(i).getPara() == id){
+                    countDep =+ 1;
+                }
+            }else return countDep;
+        }
+
+        return countDep;
     }
 }

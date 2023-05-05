@@ -31,6 +31,12 @@ class limiteSaqueException extends Exception {
     }
 }
 
+class DepositoLimiteException extends Exception {
+    public DepositoLimiteException(String message) {
+        super(message);
+    }
+}
+
 public class Javabank {
     
     static void imprimeTitulo(String titulo){
@@ -90,11 +96,14 @@ public class Javabank {
                 clienteAtual = instanc.getCliente(Integer.parseInt(IDCliente));
 
                 contaAtual = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Corrente");
+                
+                clienteAtual.setQtdDepositoCC(instanc.getModel().contaDepositoHoje(contaAtual.getID()));
 
                 // verifica se tem poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
 
                 if (contaPoupanca != null) {
+                    clienteAtual.setQtdDepositoPoupanca(instanc.getModel().contaDepositoHoje(contaPoupanca.getID()));
                     menu.addMenuItem("Saque Poupanca");
                     menu.addMenuItem("Deposito Poupanca");
                     menu.addMenuItem("Saldo Poupanca");
@@ -265,12 +274,18 @@ public class Javabank {
 
             if ("Deposito".equals(optionX) && "Menu".equals(whichmenu)) {
                 imprimeTitulo("Deposito");
+                System.out.println("Depositos restantes permitidos: "
+                        +(javabankObj.getQtdLimiteDeposito() - clienteAtual.getQtdDepositoCC()));
                 System.out.print("Valor do deposito: ");
                 
                 String valor = scanner.nextLine();
-
-                clienteAtual.Depositar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
-                System.out.println("Deposito feito com sucesso!");
+                
+                try {
+                    clienteAtual.Depositar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
+                    System.out.println("Deposito feito com sucesso!");
+                } catch (DepositoLimiteException e) {
+                    System.out.println(e.getMessage());
+                }
 
             }
 
@@ -368,12 +383,17 @@ public class Javabank {
                 // pegar poupanca
                 Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 imprimeTitulo("Deposito em Poupanca");
+                System.out.println("Depositos restantes permitidos: "
+                                   +(javabankObj.getQtdLimiteDeposito() - clienteAtual.getQtdDepositoPoupanca()));
                 System.out.print("Valor do deposito: ");
                 String valor = scanner.nextLine();
-
-                clienteAtual.Depositar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
-
-                System.out.println("Deposito feito com sucesso!");
+  
+                try {
+                    clienteAtual.Depositar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
+                    System.out.println("Deposito feito com sucesso!");
+                } catch (DepositoLimiteException e) {
+                    System.out.println(e.getMessage());
+                }
             }
 
             // Saldo Poupanca

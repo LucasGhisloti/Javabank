@@ -13,10 +13,10 @@ public class Instancias {
     Instancias(){
         this.model = new Models();
         
-        model.listaBanco.add(new Banco(1, "JavaBank", 1000.0));
-        model.listaBanco.add(new Banco(2, "Banco Atlas", 1800.0));
-        model.listaBanco.add(new Banco(3, "Fenix Financeiro", 3000.0));
-        model.listaBanco.add(new Banco(4, "Prestige Investimentos", 7000.0));
+        model.listaBanco.add(new Banco(1, "JavaBank", 1000.0, 3));
+        model.listaBanco.add(new Banco(2, "Banco Atlas", 1800.0, 10));
+        model.listaBanco.add(new Banco(3, "Fenix Financeiro", 3000.0, 25));
+        model.listaBanco.add(new Banco(4, "Prestige Investimentos", 7000.0, 100));
 
         model.listaCliente.add(new Cliente(1, "Arnaldo Sacomani", "54.986.782-89", 78963214, 9632));
         model.listaCliente.add(new Cliente(2, "Jorge Ben", "98.741.951-27", 12345678, 1234));
@@ -32,7 +32,6 @@ public class Instancias {
         model.listaConta.add(new Conta(5, 1, "Conta Corrente", 1500.00, 1000.00));
         model.listaConta.add(new Conta(6, 1, "Conta Corrente", 3000.00, 1200.00));
         model.listaConta.add(new Conta(6, 1, "Conta Poupanca", 7000.00, 7000.00));
-        model.listaConta.add(new Conta(6, 1, "Conta Pupanca", 0.00, 0.00));
 
         model.listaTransacao.add(new Transacao("2023-01-21", "13:31:02", 3, 2, 100.00, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-02-01", "08:11:23", 1, 1, 200.30, "Saque"));
@@ -40,6 +39,7 @@ public class Instancias {
         model.listaTransacao.add(new Transacao("2023-04-25", "18:01:33", 2, 5, 50.00, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-04-30", "12:54:18", 7, 6, 2.50, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-05-01", "20:02:49", 3, 5, 59.35, "Transferencia"));
+        model.listaTransacao.add(new Transacao("2023-05-05", "20:02:49", 6, 6, 59.35, "Deposito"));
         
         //model.listaConta.get(6).GerarExtrato(model, "2023-01-01", "2023-05-01");
 

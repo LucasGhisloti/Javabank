@@ -17,6 +17,7 @@ public class Conta {
     private double limiteSaque;
     private static int IDcount = 1;
     private int ID;
+    
     public Conta(int clienteID, int bancoID, String tipo, double saldo, double limiteSaque) {
         this.ID= IDcount++;
         this.clienteID = clienteID;
