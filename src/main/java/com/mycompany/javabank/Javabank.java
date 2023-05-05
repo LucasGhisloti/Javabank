@@ -59,11 +59,14 @@ public class Javabank {
                 optionX = login.load("\nJavaBank: seja bem-vindo!\n", footer);
             } else if ("Menu".equals(whichmenu)) {
                 menu.setMenuIndexatual(0);
-
-                optionX = menu.load(
-                        "\n" + clienteAtual.getNome() + " [ID: " + clienteAtual.getID() + "]"
-                            + "\nSaldo atual: " + contaAtual.getSaldo() + "\n", 
-                        footer);
+                String header = "\n" + clienteAtual.getNome() + " [ID: " + clienteAtual.getID() + "]"
+                            + "\nSaldo atual: " + contaAtual.getSaldo() + "\n";
+                // verifica se tem poupanca
+                Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
+                if (contaPoupanca != null) {
+                   header += "Saldo atual da Poupanca: "+contaPoupanca.getSaldo()+"\n";
+                }
+                optionX = menu.load(header, footer);
             }
             // Menu Inicial -----------------------------------------------------
 
