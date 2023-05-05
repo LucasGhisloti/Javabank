@@ -47,7 +47,8 @@ public class Javabank {
         Ui login = new Ui(menuLoginItems);
         Ui menu = new Ui(menuItems);
         Cliente clienteAtual = new Cliente("", "", 0, 0);
-        int IDBanco = instanc.getBancobyName("JavaBank").getID();
+        Banco javabankObj = instanc.getBancobyName("JavaBank");
+        final int IDBanco = javabankObj.getID();
         Conta contaAtual = new Conta(0, 1, "", 0, 0);
         final String footer = "[" + menu.getFooter() + "]: ";
 
@@ -168,8 +169,7 @@ public class Javabank {
                 conta.setSaldo(0);
                 conta.setBancoID(IDBanco);
                 conta.setClienteID(cliente.getID());
-                System.out.println("Digite o valor do limite de saque:");
-                conta.setLimiteSaque(Double.parseDouble(scanner.nextLine()));
+                conta.setLimiteSaque(javabankObj.getLimiteInicialDeSaque());
 
 
 
@@ -186,8 +186,7 @@ public class Javabank {
                     contaPoupanca.setSaldo(0);
                     contaPoupanca.setBancoID(IDBanco);
                     contaPoupanca.setClienteID(cliente.getID());
-                    System.out.println("Digite o valor do limite de saque:");
-                    contaPoupanca.setLimiteSaque(Double.parseDouble(scanner.nextLine()));
+                    contaPoupanca.setLimiteSaque(javabankObj.getLimiteInicialDeSaque());
                 }else{
                     contaPoupanca = null;
                 }
