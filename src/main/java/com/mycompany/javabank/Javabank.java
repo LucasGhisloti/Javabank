@@ -14,6 +14,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.text.DateFormatter;
 
@@ -315,8 +317,12 @@ public class Javabank {
                     }
                 } while (!condition);
 
-                clienteAtual.Transferencia(instanc.getModel(), contaAtual, contaDestino, Double.parseDouble(valor));
-                System.out.println("Transferencia feita com sucesso!");
+                try {
+                    clienteAtual.Transferencia(instanc.getModel(), contaAtual, contaDestino, Double.parseDouble(valor));
+                    System.out.println("Transferencia feita com sucesso!");
+                } catch (SaldoInsuficienteException e) {
+                   System.out.println(e.getMessage());
+                }
             }
 
             // Saque Poupanca

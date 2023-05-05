@@ -67,7 +67,6 @@ public class Cliente {
         if (valor > conta.getLimiteSaque()) {throw new limiteSaqueException("Limite de saque excedido");}
         if (novoVal < 0) {
             throw new SaldoInsuficienteException("Saldo insuficiente");
-            
         }
         
         LocalDateTime data_atual =  LocalDateTime.now();
@@ -96,10 +95,15 @@ public class Cliente {
         model.listaTransacao.add(new Transacao(dataString,horaString,conta.getID(),conta.getID(), valor, "Deposito"));
     }
 
-    public boolean Transferencia(Models model,Conta contaOrigem, Conta contaDestino, double valor){
+    public void Transferencia(Models model,Conta contaOrigem, Conta contaDestino, double valor)
+        throws SaldoInsuficienteException {
         
         double novoVal = contaOrigem.getSaldo() - valor;
-        if (novoVal < 0) return false;
+
+        if (novoVal < 0) {
+            throw new SaldoInsuficienteException("Saldo insuficiente");
+        }
+
         contaOrigem.setSaldo(contaOrigem.getSaldo() - valor);
         contaDestino.setSaldo(contaDestino.getSaldo() + valor);
         LocalDateTime data_atual =  LocalDateTime.now();
@@ -111,7 +115,5 @@ public class Cliente {
         String horaString = data_atual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
         model.listaTransacao.add(new Transacao(dataString,horaString,contaOrigem.getID(),contaDestino.getID(), valor, "Transferencia"));
-
-        return true;
     }
 }
