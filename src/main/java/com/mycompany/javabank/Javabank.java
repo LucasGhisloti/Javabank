@@ -150,7 +150,7 @@ public class Javabank {
                     System.out.print("Confirme sua senha: ");
                     String senha2 = scanner.nextLine();
                     if(senha.equals(senha2)){
-                        cliente.setSenhaLogin(Integer.parseInt(senha));
+                        cliente.setSenhaTransac(Integer.parseInt(senha));
                         condition = true;
                     }else{
                         System.out.print("Senhas não conferem!\nPressione enter para continuar.");
