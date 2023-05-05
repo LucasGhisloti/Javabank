@@ -187,7 +187,7 @@ public class Javabank {
                     contaPoupanca.setBancoID(IDBanco);
                     contaPoupanca.setClienteID(cliente.getID());
                     System.out.println("Digite o valor do limite de saque:");
-                    conta.setLimiteSaque(Double.parseDouble(scanner.nextLine()));
+                    contaPoupanca.setLimiteSaque(Double.parseDouble(scanner.nextLine()));
                 }else{
                     contaPoupanca = null;
                 }
