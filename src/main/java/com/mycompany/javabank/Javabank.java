@@ -46,7 +46,7 @@ public class Javabank {
         String whichmenu = "Login";
         Ui login = new Ui(menuLoginItems);
         Ui menu = new Ui(menuItems);
-        Cliente clienteAtual = new Cliente("", "", 0, 0);
+        Cliente clienteAtual = new Cliente(0, "", "", 0, 0);
         Banco javabankObj = instanc.getBancobyName("JavaBank");
         final int IDBanco = javabankObj.getID();
         Conta contaAtual = new Conta(0, 1, "", 0, 0);
@@ -117,7 +117,8 @@ public class Javabank {
             // Nova Conta
             if ("Nova Conta".equals(optionX) && "Login".equals(whichmenu)) {
 
-                Cliente cliente = new Cliente("", "", 0, 0);
+                Cliente cliente = new Cliente(
+                        instanc.getModel().getIDdeNovoCliente(), "", "", 0, 0);
                 Conta conta = new Conta(0, 1, "", 0, 0);
                 // limpar tela
                 imprimeTitulo("Nova conta");

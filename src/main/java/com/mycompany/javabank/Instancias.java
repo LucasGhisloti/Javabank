@@ -11,19 +11,19 @@ import java.util.List;
 public class Instancias {
     private Models model;
     Instancias(){
-         this.model = new Models();
+        this.model = new Models();
         
         model.listaBanco.add(new Banco(1, "JavaBank", 1000.0));
         model.listaBanco.add(new Banco(2, "Banco Atlas", 1800.0));
         model.listaBanco.add(new Banco(3, "Fenix Financeiro", 3000.0));
         model.listaBanco.add(new Banco(4, "Prestige Investimentos", 7000.0));
 
-        model.listaCliente.add(new Cliente("Arnaldo Sacomani", "54.986.782-89", 78963214, 9632));
-        model.listaCliente.add(new Cliente("Jorge Ben", "98.741.951-27", 12345678, 1234));
-        model.listaCliente.add(new Cliente("John McCarthy", "57.563.951-19", 78932165, 5637));
-        model.listaCliente.add(new Cliente("Ada Lovelace", "85.325.859-32", 84951623, 6295));
-        model.listaCliente.add(new Cliente("Alan Turing", "12.988.556-78", 26159483, 7562));
-        model.listaCliente.add(new Cliente("Orlando de Andrade Figueiredo", "96.556.001-51", 32654898, 4859));
+        model.listaCliente.add(new Cliente(1, "Arnaldo Sacomani", "54.986.782-89", 78963214, 9632));
+        model.listaCliente.add(new Cliente(2, "Jorge Ben", "98.741.951-27", 12345678, 1234));
+        model.listaCliente.add(new Cliente(3, "John McCarthy", "57.563.951-19", 78932165, 5637));
+        model.listaCliente.add(new Cliente(4, "Ada Lovelace", "85.325.859-32", 84951623, 6295));
+        model.listaCliente.add(new Cliente(5, "Alan Turing", "12.988.556-78", 26159483, 7562));
+        model.listaCliente.add(new Cliente(6, "Orlando de Andrade Figueiredo", "96.556.001-51", 32654898, 4859));
 
         model.listaConta.add(new Conta(1, 1, "Conta Corrente", 30000.00, 2000.00));
         model.listaConta.add(new Conta(2, 1, "Conta Corrente", 900.00, 1500.00));

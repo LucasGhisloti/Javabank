@@ -36,4 +36,8 @@ public class Models {
         int bancoID = this.listaConta.get(id-1).getBancoID();
         return this.listaBanco.get(bancoID-1).getNome();
     }
+
+    public int getIDdeNovoCliente(){
+        return this.listaCliente.size()+1;
+    }
 }

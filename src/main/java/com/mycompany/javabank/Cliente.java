@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 
 
 public class Cliente {
-    private static int idcount = 1;
     private int ID;
     private String nome;
     private String documento;
@@ -20,8 +19,8 @@ public class Cliente {
     
 
 
-    Cliente(String nome, String documento, int senhaLogin, int senhaTransac){
-        this.ID = idcount++;
+    Cliente(int ID, String nome, String documento, int senhaLogin, int senhaTransac){
+        this.ID = ID;
         this.setNome(nome);
         this.setSenhaLogin(senhaLogin);
         this.setSenhaTransac(senhaTransac);
