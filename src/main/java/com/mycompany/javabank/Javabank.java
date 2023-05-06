@@ -48,6 +48,7 @@ public class Javabank {
 
         Scanner scanner = new Scanner(System.in);
         Instancias instanc = new Instancias();
+        Util util = new Util();
         String[] menuLoginItems = { "Login", "Nova Conta", "Sair" };
         String[] menuItems = { "Extrato", "Saque", "Deposito", "Transferencia" };
         String optionX = "";
@@ -83,18 +84,16 @@ public class Javabank {
             if ("Login".equals(optionX) && "Login".equals(whichmenu)) {
                 // limpar tela
                 imprimeTitulo("Login");
-                System.out.print("Numero do cliente: ");
-                String IDCliente = scanner.nextLine();
-                System.out.print("Senha: ");
-                String senha = scanner.nextLine();
+
+                clienteAtual = instanc.getCliente(
+                               util.entradaCliente("Numero do cliente", instanc.getModel()));
+                
+                util.entradaSenha("Senha", clienteAtual, "Login");
 
                 // System.out.println("ID Banco: ");
                 // IDBanco = scanner.nextLine();
 
                 // pesquisar conta nas instancias
-
-                clienteAtual = instanc.getCliente(Integer.parseInt(IDCliente));
-
                 contaAtual = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Corrente");
                 
                 clienteAtual.setQtdDepositoCC(instanc.getModel().contaDepositoHoje(contaAtual.getID()));
@@ -115,13 +114,8 @@ public class Javabank {
                     menu.addMenuItem("Sair");
                 }
 
-                if (clienteAtual.getSenhaLogin() != Integer.parseInt(senha)) {
-                    System.out.println("Senha incorreta");
-                    scanner.nextLine();
-                    continue;
-                } else {
-                    whichmenu = "Menu";
-                }
+
+                whichmenu = "Menu";
 
             }
 
@@ -133,49 +127,15 @@ public class Javabank {
                 Conta conta = new Conta(0, 1, "", 0, 0);
                 // limpar tela
                 imprimeTitulo("Nova conta");
-                System.out.print("Seu nome: ");
-                cliente.setNome(scanner.nextLine());
-                System.out.print("Seu documento (CPF/CNPJ): ");
-                cliente.setDocumento(scanner.nextLine());
+
+                cliente.setNome(util.entradaNomeEDoc("Seu nome"));
+                cliente.setDocumento(util.entradaNomeEDoc("Seu documento (CPF/CNPJ)"));
                 
                 //limpar tela
                 
-                boolean condition = false;
-                String senha = "";
-                do {
-                    System.out.print("Senha de login: ");
-                    senha = scanner.nextLine();
-                    System.out.print("Confirme sua senha: ");
-                    String senha2 = scanner.nextLine();
-                    if(senha.equals(senha2)){
-                        cliente.setSenhaLogin(Integer.parseInt(senha));
-                        condition = true;
-                    }else{
-                        System.out.print("Senhas não conferem!\nPressione enter para continuar");
-                        scanner.nextLine();
-                    }
-                    
-                } while (!condition);
+                cliente.setSenhaLogin(util.entradaSenhaNovaConta("Login"));
 
-                cliente.setSenhaLogin(Integer.parseInt(senha));
-
-                condition = false;
-                do {
-                    System.out.print("Senha de transação: ");
-                    senha = scanner.nextLine();
-                    System.out.print("Confirme sua senha: ");
-                    String senha2 = scanner.nextLine();
-                    if(senha.equals(senha2)){
-                        cliente.setSenhaTransac(Integer.parseInt(senha));
-                        condition = true;
-                    }else{
-                        System.out.print("Senhas não conferem!\nPressione enter para continuar.");
-                        scanner.nextLine();
-                    }
-                    
-                } while (!condition);
-
-                cliente.setSenhaTransac(Integer.parseInt(senha));
+                cliente.setSenhaTransac(util.entradaSenhaNovaConta("Transacao"));
                 //configura conta
                 conta.setTipo("Conta Corrente");
                 conta.setSaldo(0);
@@ -242,23 +202,12 @@ public class Javabank {
             if ("Saque".equals(optionX) && "Menu".equals(whichmenu)) {
                 imprimeTitulo("Saque");
                 System.out.println("Voce pode sacar ate "+ contaAtual.getLimiteSaque());
-                System.out.print("Valor do saque: ");
-                String valor = scanner.nextLine();
                 
-                System.out.print("Senha de transacao: ");
-
-                boolean condition = false;
-                do {
-                    int senha = Integer.parseInt(scanner.nextLine());
-                    if(senha == clienteAtual.getSenhaTransac()){
-                        condition = true;
-                    }else{
-                        System.out.print("Senha incorreta!\nTente novamente: ");
-                    }
-                } while (!condition);
+                double valor = util.entradaValor("Valor do saque");
+                util.entradaSenha("Senha de transacao", clienteAtual, "Transacao");
 
                 try {
-                    clienteAtual.Sacar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
+                    clienteAtual.Sacar(instanc.getModel(), contaAtual, valor);
                     System.out.println("\nSaque feito com sucesso!");
                 } catch (SaldoInsuficienteException e) {
                     System.out.println(e.getMessage());
@@ -276,12 +225,11 @@ public class Javabank {
                 imprimeTitulo("Deposito");
                 System.out.println("Depositos restantes permitidos: "
                         +(javabankObj.getQtdLimiteDeposito() - clienteAtual.getQtdDepositoCC()));
-                System.out.print("Valor do deposito: ");
                 
-                String valor = scanner.nextLine();
+                double valor = util.entradaValor("Valor do deposito");
                 
                 try {
-                    clienteAtual.Depositar(instanc.getModel(), contaAtual, Double.parseDouble(valor));
+                    clienteAtual.Depositar(instanc.getModel(), contaAtual, valor);
                     System.out.println("Deposito feito com sucesso!");
                 } catch (DepositoLimiteException e) {
                     System.out.println(e.getMessage());
@@ -293,12 +241,10 @@ public class Javabank {
 
             if ("Transferencia".equals(optionX) && "Menu".equals(whichmenu)) {
                 imprimeTitulo("Transferencia");
-                System.out.print("Valor a transferir: ");
-
-                String valor = scanner.nextLine();
-                System.out.print("ID do cliente que recebera a transferencia: ");
-                String IDCliente = scanner.nextLine();
-                Cliente clienteDestino = instanc.getCliente(Integer.parseInt(IDCliente));
+                double valor = util.entradaValor("Valor a transferir");
+                int IDCliente = util.entradaCliente("ID do cliente que recebera a transferencia", instanc.getModel());
+                
+                Cliente clienteDestino = instanc.getCliente(IDCliente);
 
                 System.out.println("Voce esta transferindo para: " + clienteDestino.getNome());
 
@@ -306,7 +252,7 @@ public class Javabank {
 
                 Ui selecaoConta = new Ui(tipodecontas);
                 // verifica se destino tem poupanca
-                Conta contaPoupanca = instanc.getConta(Integer.parseInt(IDCliente), IDBanco, "Conta Poupanca");
+                Conta contaPoupanca = instanc.getConta(IDCliente, IDBanco, "Conta Poupanca");
 
                 if (contaPoupanca != null) {
                     selecaoConta.addMenuItem("Conta Poupanca");
@@ -323,19 +269,10 @@ public class Javabank {
 
                 Conta contaDestino = instanc.getConta(clienteDestino.getID(), IDBanco, optionConta);
                 
-                System.out.print("Senha de transacao: ");
-                boolean condition = false;
-                do {
-                    int senha = Integer.parseInt(scanner.nextLine());
-                    if(senha == clienteAtual.getSenhaTransac()){
-                        condition = true;
-                    }else{
-                        System.out.print("Senha incorreta!\nTente novamente: ");
-                    }
-                } while (!condition);
+                util.entradaSenha("Senha de transacao", clienteAtual, "Transacao");
 
                 try {
-                    clienteAtual.Transferencia(instanc.getModel(), contaAtual, contaDestino, Double.parseDouble(valor));
+                    clienteAtual.Transferencia(instanc.getModel(), contaAtual, contaDestino, valor);
                     System.out.println("Transferencia feita com sucesso!");
                 } catch (SaldoInsuficienteException e) {
                    System.out.println(e.getMessage());
@@ -349,23 +286,13 @@ public class Javabank {
 
                 imprimeTitulo("Saque Poupanca");
                 System.out.println("Voce pode sacar ate "+ contaPoupanca.getLimiteSaque());
-                System.out.print("Valor do saque: ");
-                String valor = scanner.nextLine();
-                
-                System.out.print("Senha de transacao: ");
 
-                boolean condition = false;
-                do {
-                    int senha = Integer.parseInt(scanner.nextLine());
-                    if(senha == clienteAtual.getSenhaTransac()){
-                        condition = true;
-                    }else{
-                        System.out.print("Senha incorreta!\nTente novamente: ");
-                    }
-                } while (!condition);
+                double valor = util.entradaValor("Valor do saque");
+
+                util.entradaSenha("Senha de transacao", clienteAtual, "Transacao");
 
                 try {
-                    clienteAtual.Sacar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
+                    clienteAtual.Sacar(instanc.getModel(), contaPoupanca, valor);
                     System.out.println("Saque feito com sucesso!");
                 } catch (SaldoInsuficienteException e) {
                     System.out.println(e.getMessage());
@@ -385,11 +312,11 @@ public class Javabank {
                 imprimeTitulo("Deposito em Poupanca");
                 System.out.println("Depositos restantes permitidos: "
                                    +(javabankObj.getQtdLimiteDeposito() - clienteAtual.getQtdDepositoPoupanca()));
-                System.out.print("Valor do deposito: ");
-                String valor = scanner.nextLine();
+
+                double valor = util.entradaValor("Valor do deposito");
   
                 try {
-                    clienteAtual.Depositar(instanc.getModel(), contaPoupanca, Double.parseDouble(valor));
+                    clienteAtual.Depositar(instanc.getModel(), contaPoupanca, valor);
                     System.out.println("Deposito feito com sucesso!");
                 } catch (DepositoLimiteException e) {
                     System.out.println(e.getMessage());
