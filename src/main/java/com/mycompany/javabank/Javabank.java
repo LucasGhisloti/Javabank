@@ -225,6 +225,8 @@ public class Javabank {
     
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
+            util.splash();
+
             Instancias instanc = new Instancias();
             javabankObj = instanc.getModel().getBancobyName("JavaBank");
             IDBanco = javabankObj.getID();
