@@ -152,7 +152,7 @@ public class Javabank {
 
         String[] tipodecontas = { "Conta Corrente" };
 
-        Ui selecaoConta = new Ui(tipodecontas);
+        MenuUI selecaoConta = new MenuUI(tipodecontas);
         // verifica se destino tem poupanca
         Conta contaPoupanca = instanc.getModel()
                 .getConta(IDCliente, IDBanco, "Conta Poupanca");
@@ -235,8 +235,8 @@ public class Javabank {
             String[] menuItems = { "Extrato", "Saque", "Deposito", "Transferencia" };
             String optionX = "";
             String whichmenu = "Login";
-            Ui login = new Ui(menuLoginItems);
-            Ui menu = new Ui(menuItems);
+            MenuUI login = new MenuUI(menuLoginItems);
+            MenuUI menu = new MenuUI(menuItems);
             Cliente clienteAtual = new Cliente(0, "", "", 0, 0);
             
             Conta contaAtual = new Conta(0, 1, "", 0, 0);

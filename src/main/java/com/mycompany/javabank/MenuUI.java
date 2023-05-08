@@ -1,6 +1,6 @@
 package com.mycompany.javabank;
 import java.util.Scanner;
-public class Ui {
+public class MenuUI {
      // Atributos
      private String[] menuItems;
      private int menuIndexatual;
@@ -12,7 +12,7 @@ public class Ui {
      final private String selectChar = "x";
 
      // Construtor
-     public Ui() {
+     public MenuUI() {
          this.menuItems = new String[0];
          this.menuIndexatual = 0;
          this.menuSelector = "> ";
@@ -20,7 +20,7 @@ public class Ui {
          
      }
      
-     public Ui(String[] menuItems) {
+     public MenuUI(String[] menuItems) {
          this.menuItems = menuItems;
          this.menuIndexatual = 0;
          this.menuSelector = "> ";
