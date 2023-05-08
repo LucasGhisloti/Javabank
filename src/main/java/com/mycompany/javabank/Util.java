@@ -66,18 +66,18 @@ public class Util{
             senha = scanner.nextLine();
             
             if(!senha.matches("[0-9]*"))
-                msg = "A senha deve conter apenas numeros!\nTente Novamente: ";
+                msg = "A senha deve conter apenas numeros!\nTente novamente";
             else{
                 if(senha.isEmpty())
-                    msg = "É necessário inserir uma senha!\nTente Novamente: ";
+                    msg = "É necessário inserir uma senha!\nTente novamente";
                 else if(tipoSenha.equals("Login")){
                     if(senha.length() < 8 || senha.length() > 8)
-                        msg = "A senha de "+tipoSenha+" deve conter 8 numeros!\nTente Novamente: ";
+                        msg = "A senha de "+tipoSenha+" deve conter 8 numeros!\nTente novamente";
                     else
                         condition = true;
                 }else if(tipoSenha.equals("Transacao")){
                     if(senha.length() < 4 || senha.length() > 4)
-                        msg = "A senha de "+tipoSenha+" deve conter 4 numeros!\nTente Novamente: ";
+                        msg = "A senha de "+tipoSenha+" deve conter 4 numeros!\nTente novamente";
                     else
                         condition = true;
                 }else condition = true;
