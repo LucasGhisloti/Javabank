@@ -4,10 +4,6 @@
  */
 package com.mycompany.javabank;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class Instancias {
     private Models model;
     Instancias(){
@@ -62,69 +58,8 @@ public class Instancias {
         }*/
     }
 
-    public Conta getConta(int id, int banco){
-        
-        for(int i = 0; i< model.listaConta.size(); i++){
-            if(model.listaConta.get(i).getClienteID() == id && model.listaConta.get(i).getBancoID() == banco){
-                return model.listaConta.get(i);
-            }
-        }
-        return null;
-    }
-
     public Models getModel(){
         return this.model;
     }
-
-    public Conta getConta(int id, int banco, String tipo){
-        
-        for(int i = 0; i< model.listaConta.size(); i++){
-            if(model.listaConta.get(i).getClienteID() == id && model.listaConta.get(i).getBancoID() == banco && model.listaConta.get(i).getTipo() == tipo){
-                return model.listaConta.get(i);
-            }
-        }
-        return null;
-    }
-
-    public Cliente getCliente(int id){
-        
-        for(int i = 0; i< model.listaCliente.size(); i++){
-            if(model.listaCliente.get(i).getID() == id){
-                return model.listaCliente.get(i);
-            }
-        }
-        return null;
-    }
-
-    public Banco getBanco(int id){
-        
-        for(int i = 0; i< model.listaBanco.size(); i++){
-            if(model.listaBanco.get(i).getID() == id){
-                return model.listaBanco.get(i);
-            }
-        }
-        return null;
-    }
-
-    public Banco getBancobyName(String nome){
-        
-        for(int i = 0; i< model.listaBanco.size(); i++){
-            if(model.listaBanco.get(i).getNome().equals(nome)){
-                return model.listaBanco.get(i);
-            }
-        }
-        return null;
-    }
-
-    public List<Transacao> getTransacoes(int id, int banco){
-        ArrayList<Transacao> transacoes = new ArrayList<Transacao>();
-        for(Transacao t : model.listaTransacao){
-            if(t.getDe() == id){
-                transacoes.add(t);
-            }
-        }
-        return transacoes;
-    }
-
 
 }

@@ -56,7 +56,7 @@ public class Javabank {
         Ui login = new Ui(menuLoginItems);
         Ui menu = new Ui(menuItems);
         Cliente clienteAtual = new Cliente(0, "", "", 0, 0);
-        Banco javabankObj = instanc.getBancobyName("JavaBank");
+        Banco javabankObj = instanc.getModel().getBancobyName("JavaBank");
         final int IDBanco = javabankObj.getID();
         Conta contaAtual = new Conta(0, 1, "", 0, 0);
         final String footer = "[" + menu.getFooter() + "]: ";
@@ -72,7 +72,8 @@ public class Javabank {
                 String header = "\n" + clienteAtual.getNome() + " [ID: " + clienteAtual.getID() + "]"
                             + "\nSaldo atual: " + contaAtual.getSaldo() + "\n";
                 // verifica se tem poupanca
-                Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
+                Conta contaPoupanca = instanc.getModel()
+                        .getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 if (contaPoupanca != null) {
                    header += "Saldo atual da Poupanca: "+contaPoupanca.getSaldo()+"\n";
                 }
@@ -85,7 +86,7 @@ public class Javabank {
                 // limpar tela
                 imprimeTitulo("Login");
 
-                clienteAtual = instanc.getCliente(
+                clienteAtual = instanc.getModel().getCliente(
                                util.entradaCliente("Numero do cliente", instanc.getModel()));
                 
                 util.entradaSenha("Senha", clienteAtual, "Login");
@@ -94,12 +95,14 @@ public class Javabank {
                 // IDBanco = scanner.nextLine();
 
                 // pesquisar conta nas instancias
-                contaAtual = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Corrente");
+                contaAtual = instanc.getModel()
+                        .getConta(clienteAtual.getID(), IDBanco, "Conta Corrente");
                 
                 clienteAtual.setQtdDepositoCC(instanc.getModel().contaDepositoHoje(contaAtual.getID()));
 
                 // verifica se tem poupanca
-                Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
+                Conta contaPoupanca = instanc.getModel()
+                        .getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
 
                 if (contaPoupanca != null) {
                     clienteAtual.setQtdDepositoPoupanca(instanc.getModel().contaDepositoHoje(contaPoupanca.getID()));
@@ -244,7 +247,7 @@ public class Javabank {
                 double valor = util.entradaValor("Valor a transferir");
                 int IDCliente = util.entradaCliente("ID do cliente que recebera a transferencia", instanc.getModel());
                 
-                Cliente clienteDestino = instanc.getCliente(IDCliente);
+                Cliente clienteDestino = instanc.getModel().getCliente(IDCliente);
 
                 System.out.println("Voce esta transferindo para: " + clienteDestino.getNome());
 
@@ -252,7 +255,8 @@ public class Javabank {
 
                 Ui selecaoConta = new Ui(tipodecontas);
                 // verifica se destino tem poupanca
-                Conta contaPoupanca = instanc.getConta(IDCliente, IDBanco, "Conta Poupanca");
+                Conta contaPoupanca = instanc.getModel()
+                        .getConta(IDCliente, IDBanco, "Conta Poupanca");
 
                 if (contaPoupanca != null) {
                     selecaoConta.addMenuItem("Conta Poupanca");
@@ -267,7 +271,8 @@ public class Javabank {
                     continue;
                 }
 
-                Conta contaDestino = instanc.getConta(clienteDestino.getID(), IDBanco, optionConta);
+                Conta contaDestino = instanc.getModel()
+                        .getConta(clienteDestino.getID(), IDBanco, optionConta);
                 
                 util.entradaSenha("Senha de transacao", clienteAtual, "Transacao");
 
@@ -282,7 +287,8 @@ public class Javabank {
             // Saque Poupanca
             if ("Saque Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
-                Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
+                Conta contaPoupanca = instanc.getModel()
+                        .getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
 
                 imprimeTitulo("Saque Poupanca");
                 System.out.println("Voce pode sacar ate "+ contaPoupanca.getLimiteSaque());
@@ -308,7 +314,8 @@ public class Javabank {
             // Deposito Poupanca
             if ("Deposito Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
-                Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
+                Conta contaPoupanca = instanc.getModel()
+                        .getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 imprimeTitulo("Deposito em Poupanca");
                 System.out.println("Depositos restantes permitidos: "
                                    +(javabankObj.getQtdLimiteDeposito() - clienteAtual.getQtdDepositoPoupanca()));
@@ -326,7 +333,8 @@ public class Javabank {
             // Saldo Poupanca
             if ("Saldo Poupanca".equals(optionX) && "Menu".equals(whichmenu)) {
                 // pegar poupanca
-                Conta contaPoupanca = instanc.getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
+                Conta contaPoupanca = instanc.getModel()
+                        .getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
                 imprimeTitulo("Saldo Poupanca");
                 System.out.println("Saldo: " + contaPoupanca.getSaldo());
                 System.out.print("Pressione enter para voltar!");

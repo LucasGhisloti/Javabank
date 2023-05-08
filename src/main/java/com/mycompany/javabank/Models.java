@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 public class Models {
@@ -56,5 +57,68 @@ public class Models {
         }
 
         return countDep;
+    }
+
+    public Banco getBancobyName(String nome){
+
+        for(int i = 0; i< this.listaBanco.size(); i++){
+            if(this.listaBanco.get(i).getNome().equals(nome)){
+                return this.listaBanco.get(i);
+            }
+        }
+        return null;
+    }
+
+    public List<Transacao> getTransacoes(int id, int banco){
+        ArrayList<Transacao> transacoes = new ArrayList<>();
+        for(Transacao t : this.listaTransacao){
+            if(t.getDe() == id){
+                transacoes.add(t);
+            }
+        }
+        return transacoes;
+    }
+
+    public Banco getBanco(int id){
+
+        for(int i = 0; i< this.listaBanco.size(); i++){
+            if(this.listaBanco.get(i).getID() == id){
+                return this.listaBanco.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Cliente getCliente(int id){
+
+        for(int i = 0; i< this.listaCliente.size(); i++){
+            if(this.listaCliente.get(i).getID() == id){
+                return this.listaCliente.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Conta getConta(int id, int banco){
+
+        for(int i = 0; i< this.listaConta.size(); i++){
+            if(this.listaConta.get(i).getClienteID() == id
+                    && this.listaConta.get(i).getBancoID() == banco){
+                return this.listaConta.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Conta getConta(int id, int banco, String tipo){
+
+        for(int i = 0; i< this.listaConta.size(); i++){
+            if(this.listaConta.get(i).getClienteID() == id
+                    && this.listaConta.get(i).getBancoID() == banco
+                    && this.listaConta.get(i).getTipo().equals(tipo)){
+                return this.listaConta.get(i);
+            }
+        }
+        return null;
     }
 }
