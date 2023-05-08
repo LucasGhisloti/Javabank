@@ -34,6 +34,19 @@ public class Javabank {
     static int IDBanco;
     static Banco javabankObj;
     
+    static void splash(){
+        System.out.println(
+           "    ___________\n" +
+           "   <___________> ___\n" +
+           "   |    | |    |/ _ \\                     Bem-vindo ao\n" +
+           "   |   / __)   | | | |     __   __   _  _   __   ____   __   __ _  __ _ \n" +
+           "   |   \\__ \\   | |_| |   _(  ) / _\\ / )( \\ / _\\ (  _ \\ / _\\ (  ( \\(  / )\n" +
+           " __|   (   /   |\\___/   / \\) \\/    \\\\ \\/ //    \\ ) _ (/    \\/    / )  ( \n" +
+           "/   \\___|_|___/   \\     \\____/\\_/\\_/ \\__/ \\_/\\_/(____/\\_/\\_/\\_)__)(__\\_)\n" +
+           "\\_________________/"
+        );
+    }
+
     static void imprimeTitulo(String titulo){
         System.out.println("\n\033[H\033[2J"
                 + "<< " + titulo + " >>");
@@ -225,7 +238,7 @@ public class Javabank {
     
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            util.splash();
+            splash();
 
             Instancias instanc = new Instancias();
             javabankObj = instanc.getModel().getBancobyName("JavaBank");
