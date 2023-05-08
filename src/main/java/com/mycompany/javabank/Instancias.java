@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.javabank;
+
 
 public class Instancias {
     private Models model;
+    
     Instancias(){
         this.model = new Models();
-        
+
         model.listaBanco.add(new Banco(1, "JavaBank", 1000.0, 3));
         model.listaBanco.add(new Banco(2, "Banco Atlas", 1800.0, 10));
         model.listaBanco.add(new Banco(3, "Fenix Financeiro", 3000.0, 25));
