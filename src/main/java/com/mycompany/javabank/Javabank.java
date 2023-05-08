@@ -26,11 +26,11 @@ class DepositoLimiteException extends Exception {
 }
 
 public class Javabank {
-    static Util util = new Util();
-    static int IDBanco;
-    static Banco javabankObj;
+    private static Util util = new Util();
+    private static int IDBanco;
+    private static Banco javabankObj;
     
-    static void splash(){
+    private static void splash(){
         System.out.println(
            "    ___________\n" +
            "   <___________> ___\n" +
@@ -43,12 +43,12 @@ public class Javabank {
         );
     }
 
-    static void imprimeTitulo(String titulo){
+    private static void imprimeTitulo(String titulo){
         System.out.println("\n\033[H\033[2J"
                 + "<< " + titulo + " >>");
     }
     
-    static void novaConta(Instancias instanc, Scanner scanner){        
+    private static void novaConta(Instancias instanc, Scanner scanner){        
         Cliente cliente;
         cliente = new Cliente(
                 instanc.getModel().getIDdeNovoCliente(), "", "", 0, 0);
@@ -93,7 +93,7 @@ public class Javabank {
         scanner.nextLine();
     }
     
-    static void extrato(Instancias instanc, Conta contaAtual, Scanner scanner){
+    private static void extrato(Instancias instanc, Conta contaAtual, Scanner scanner){
         imprimeTitulo("Extrato");
         LocalDate data = LocalDate.now();
 
@@ -110,7 +110,7 @@ public class Javabank {
         scanner.nextLine();
     }
     
-    static void saque(Conta contaAtual, Cliente clienteAtual,
+    private static void saque(Conta contaAtual, Cliente clienteAtual,
             Instancias instanc, Scanner scanner){
         imprimeTitulo("Saque");
         System.out.println("Voce pode sacar ate "+ contaAtual.getLimiteSaque());
@@ -129,7 +129,7 @@ public class Javabank {
         scanner.nextLine();
     }
     
-    static void deposito(Cliente clienteAtual, Conta contaAtual,
+    private static void deposito(Cliente clienteAtual, Conta contaAtual,
             Instancias instanc){
         imprimeTitulo("Deposito");
         System.out.println("Depositos restantes permitidos: "
@@ -146,7 +146,7 @@ public class Javabank {
         }
     }
     
-    static void transferencia(Instancias instanc, String footer,
+    private static void transferencia(Instancias instanc, String footer,
             Cliente clienteAtual, Conta contaAtual){
         imprimeTitulo("Transferencia");
         double valor = util.entradaValor("Valor a transferir");
@@ -192,7 +192,7 @@ public class Javabank {
         }
     }
     
-    static void depositoPoupanca(Instancias instanc, Cliente clienteAtual){
+    private static void depositoPoupanca(Instancias instanc, Cliente clienteAtual){
         Conta contaPoupanca = instanc.getModel()
                 .getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
         imprimeTitulo("Deposito em Poupanca");
@@ -210,7 +210,8 @@ public class Javabank {
         }
     }
     
-    static void saquePoupanca(Instancias instanc, Cliente clienteAtual, Scanner scanner){
+    private static void saquePoupanca(Instancias instanc, Cliente clienteAtual,
+            Scanner scanner){
         Conta contaPoupanca = instanc.getModel()
                 .getConta(clienteAtual.getID(), IDBanco, "Conta Poupanca");
 
