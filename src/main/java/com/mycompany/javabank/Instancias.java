@@ -31,26 +31,6 @@ public class Instancias {
         model.listaTransacao.add(new Transacao("2023-04-30", "12:54:18", 7, 6, 2.50, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-05-01", "20:02:49", 3, 5, 59.35, "Transferencia"));
         model.listaTransacao.add(new Transacao("2023-05-05", "20:02:49", 6, 6, 59.35, "Deposito"));
-        
-        //model.listaConta.get(6).GerarExtrato(model, "2023-01-01", "2023-05-01");
-
-        /*
-        model.listaConta.forEach((t) -> {
-            System.out.println(model.listaConta.indexOf(t)+" - "+t.getClienteID());
-        });
-        
-        for(int i = 0; i< model.listaTransacao.size(); i++){
-            System.out.println(model.listaTransacao.get(i).toString(model)+"\n\n");
-        }
-        System.out.println(trans.toString());
-        
-        System.out.println(cli.getID() + " " + cli.getNome());
-        System.out.println(conta1.getSaldo() + " " + conta1.getLimiteSaque());
-        if (cli.Sacar(conta1, 2000.01)){
-            System.out.println(conta1.getSaldo());
-        } else {
-            System.out.println("Saque negado.");
-        }*/
     }
 
     public Models getModel(){
